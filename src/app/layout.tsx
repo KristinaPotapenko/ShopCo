@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { dmSans } from "@/components/ui/fonts";
+import { montserrat, dmSans } from "@/components/ui/fonts";
 
 import "./globals.css";
 
@@ -17,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.className} antialiased font-light`}>
+      <body
+        className={`${montserrat.variable} ${dmSans.variable} antialiased font-dm text-sm md:text-base font-light bg-white`}
+      >
         {children}
       </body>
     </html>
