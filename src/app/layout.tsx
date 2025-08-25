@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { montserrat, dmSans } from "@/components/ui/fonts";
 
 import AnnouncementBar from "@/components/sections/AnnouncementBar/AnnouncementBar";
+import Header from "@/components/sections/Header/Header";
 
 import "./globals.css";
 
@@ -23,6 +24,7 @@ export default function RootLayout({
         className={`${montserrat.variable} ${dmSans.variable} antialiased font-dm text-sm md:text-base font-light bg-white`}
       >
         <AnnouncementBar />
+        <Header />
         {children}
       </body>
     </html>
