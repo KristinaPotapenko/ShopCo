@@ -13,12 +13,9 @@ import {
 
 export default function Header() {
   return (
-    <div className="container flex justify-between lg:gap-10 py-5 px-4 mx-auto my-0">
+    <div className="container flex justify-between flex-wrap sm:flex-nowrap lg:gap-10 py-5 px-4 mx-auto my-0">
       <div className="flex items-center gap-4 lg:gap-10">
-        <IconButton
-          onClick={() => console.log()}
-          className="lg:hidden cursor-pointer"
-        >
+        <IconButton className="lg:hidden cursor-pointer">
           <MenuIcon className="w-6 h-6" strokeWidth={2.5} />
         </IconButton>
         <Link
@@ -46,9 +43,9 @@ export default function Header() {
           </li>
         </ul>
       </div>
-      <div className="flex items-center gap-2 lg:w-full">
-        <div className="relative lg:flex-1 lg:mr-8">
-          <div className="hidden lg:block relative">
+      <div className="flex items-center justify-end gap-2 lg:w-full">
+        <div className="relative lg:flex-1 lg:mr-8 max-w-sm">
+          <div className="hidden relative lg:block">
             <label htmlFor="serch" className="sr-only">
               Search products
             </label>
