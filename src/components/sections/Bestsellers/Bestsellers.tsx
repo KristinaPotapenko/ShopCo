@@ -1,6 +1,6 @@
 import { Product } from "@/types/product";
 
-import ProductCard from "@/components/ui/ProductCard/ProductCard";
+import ProductCard from "@/components/ui/cards/ProductCard/ProductCard";
 import SectionTitle from "@/components/ui/SectionTitle/SectionTitle";
 import ViewAllButton from "@/components/ui/ViewAllButton/ViewAllButton";
 
