@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import IconButton from "@/components/ui/IconButton/IconButton";
 import NavLink from "@/components/ui/NavLink/NavLink";
+import Input from "@/components/ui/Input/Input";
 
 import {
   AlignJustify as MenuIcon,
@@ -49,16 +50,13 @@ export default function Header() {
             <label htmlFor="serch" className="sr-only">
               Search products
             </label>
-            <input
+            <Input
               id="search"
               type="text"
               placeholder="Search for products..."
-              className="w-full py-3.5 pr-3.5 pl-14 text-zinc-400 font-normal bg-zinc-100 rounded-3xl placeholder:text-zinc-300
-              hover:ring-2 hover:ring-offset-2 hover:ring-zinc-200 focus:ring-2 focus:ring-offset-2 focus:ring-zinc-200 focus:outline-none transition-colors duration-300"
             />
-
             <SearchIcon
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-zinc-300"
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-zinc-400"
               strokeWidth={2.5}
             />
           </div>
