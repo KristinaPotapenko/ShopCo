@@ -3,6 +3,7 @@ import Partners from "@/components/sections/Partners/Partners";
 import NewArrivals from "@/components/sections/NewArrivals/NewArrivals";
 import Bestsellers from "@/components/sections/Bestsellers/Bestsellers";
 import Styles from "@/components/sections/Styles/Styles";
+import Newsletter from "@/components/sections/Newsletter/Newsletter";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <NewArrivals />
       <Bestsellers />
       <Styles />
+      <Newsletter />
     </main>
   );
 }
