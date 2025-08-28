@@ -1,7 +1,7 @@
 import { Product } from "@/types/product";
 
 import SectionTitle from "@/components/ui/SectionTitle/SectionTitle";
-import ProductCard from "@/components/ui/ProductCard/ProductCard";
+import ProductCard from "@/components/ui/cards/ProductCard/ProductCard";
 import ViewAllButton from "@/components/ui/ViewAllButton/ViewAllButton";
 
 const products: Product[] = [
