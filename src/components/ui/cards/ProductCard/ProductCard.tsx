@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Star from "../../Star/Star";
+import Link from "next/link";
 
 interface ProductCardProps {
   image: string;
@@ -19,50 +20,57 @@ export default function ProductCard({
   discountPercentage,
 }: ProductCardProps) {
   return (
-    <li className="flex flex-col basis-[25%] mb-8 lg:mb-0">
-      <div className="relative aspect-square w-full mb-2.5 md:mb-4">
-        <Image src={image} alt="" fill className="object-cover rounded-3xl" />
-      </div>
-      <div className="flex flex-col grow">
-        <h3 className="grow text-base md:text-xl font-semibold mb-1 md:mb-2">
-          {title}
-        </h3>
-        <div className="flex items-center gap-2.5 md:gap-3.5 mb-1 md:mb-2">
-          <ul className="flex items-center gap-1.5">
-            <li>
-              <Star />
-            </li>
-            <li>
-              <Star />
-            </li>
-            <li>
-              <Star />
-            </li>
-            <li>
-              <Star />
-            </li>
-            <li>
-              <Star />
-            </li>
-          </ul>
-          <p className="text-zinc-400 font-normal">
-            <span className="text-black">{rating}/</span>5
-          </p>
+    <li className="mb-8 lg:mb-0 basis-[25%]">
+      <Link
+        className="flex flex-col h-wull p-4 transition-transform duration-300 hover:-translate-y-2 
+          hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] 
+          rounded-3xl cursor-pointer"
+        href="/"
+      >
+        <div className="relative aspect-square w-full mb-2.5 md:mb-4">
+          <Image src={image} alt="" fill className="object-cover rounded-3xl" />
         </div>
-        <div className="flex items-center gap-1.5 md:gap-2.5">
-          <p className="text-xl md:text-2xl font-semibold">${price}</p>
-          {oldPrice && (
-            <p className="text-xl md:text-2xl font-semibold text-zinc-400 line-through">
-              ${oldPrice}
+        <div className="flex flex-col grow">
+          <h3 className="grow text-base md:text-xl font-semibold mb-1 md:mb-2">
+            {title}
+          </h3>
+          <div className="flex items-center gap-2.5 md:gap-3.5 mb-1 md:mb-2">
+            <ul className="flex items-center gap-1.5">
+              <li>
+                <Star />
+              </li>
+              <li>
+                <Star />
+              </li>
+              <li>
+                <Star />
+              </li>
+              <li>
+                <Star />
+              </li>
+              <li>
+                <Star />
+              </li>
+            </ul>
+            <p className="text-zinc-400 font-normal">
+              <span className="text-black">{rating}/</span>5
             </p>
-          )}
-          {discountPercentage && (
-            <span className="py-0.5 md:py-1.5 px-2 md:px-3.5 text-xs md:text-sm font-normal text-red-500 bg-red-100 rounded-[60px]">
-              -{discountPercentage}%
-            </span>
-          )}
+          </div>
+          <div className="flex items-center gap-1.5 md:gap-2.5">
+            <p className="text-xl md:text-2xl font-semibold">${price}</p>
+            {oldPrice && (
+              <p className="text-xl md:text-2xl font-semibold text-zinc-400 line-through">
+                ${oldPrice}
+              </p>
+            )}
+            {discountPercentage && (
+              <span className="py-0.5 md:py-1.5 px-2 md:px-3.5 text-xs md:text-sm font-normal text-red-500 bg-red-100 rounded-[60px]">
+                -{discountPercentage}%
+              </span>
+            )}
+          </div>
         </div>
-      </div>
+      </Link>
     </li>
   );
 }
