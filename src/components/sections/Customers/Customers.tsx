@@ -84,7 +84,7 @@ export default function Customers() {
   };
 
   return (
-    <section className="container px-4 py-16 mx-auto">
+    <section className="container px-4 pt-16 mx-auto">
       <div className="flex items-center justify-between gap-4 mb-6 lg:mb-10">
         <SectionTitle isCentered={false} hasMargin={false}>
           OUR HAPPY CUSTOMERS
