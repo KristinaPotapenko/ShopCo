@@ -4,6 +4,7 @@ import { montserrat, dmSans } from "@/components/ui/fonts";
 
 import AnnouncementBar from "@/components/sections/AnnouncementBar/AnnouncementBar";
 import Header from "@/components/sections/Header/Header";
+import Footer from "@/components/sections/Footer/Footer";
 
 import "./globals.css";
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         <AnnouncementBar />
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
