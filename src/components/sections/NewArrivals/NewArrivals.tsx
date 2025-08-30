@@ -42,7 +42,7 @@ const products: Product[] = [
 export default function NewArrivals() {
   return (
     <section className="container flex flex-col lg:items-center mx-auto py-16 px-4 border-b border-zinc-200">
-      <SectionTitle>NEW ARRIVALS</SectionTitle>
+      <SectionTitle hasMargin={false}>NEW ARRIVALS</SectionTitle>
       <ul className="flex justify-between gap-6 w-full p-6 mb-10 md:mb-14 mx-auto overflow-x-auto">
         {products.map((product) => {
           return (
