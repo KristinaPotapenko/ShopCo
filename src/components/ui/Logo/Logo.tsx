@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 interface LogoProps {
-  className: string;
+  className?: string;
 }
 
 export default function Logo({ className }: LogoProps) {
