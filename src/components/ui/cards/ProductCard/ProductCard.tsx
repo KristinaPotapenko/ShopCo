@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Star from "../../Star/Star";
 import Link from "next/link";
+
+import Stars from "../../Stars/Stars";
 
 interface ProductCardProps {
   image: string;
@@ -35,23 +36,7 @@ export default function ProductCard({
             {title}
           </h3>
           <div className="flex items-center gap-2.5 md:gap-3.5 mb-1 md:mb-2">
-            <ul className="flex items-center gap-1.5">
-              <li>
-                <Star />
-              </li>
-              <li>
-                <Star />
-              </li>
-              <li>
-                <Star />
-              </li>
-              <li>
-                <Star />
-              </li>
-              <li>
-                <Star />
-              </li>
-            </ul>
+            <Stars />
             <p className="text-zinc-400 font-normal">
               <span className="text-black">{rating}/</span>5
             </p>
