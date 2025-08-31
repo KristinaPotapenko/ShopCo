@@ -1,14 +1,13 @@
 import Logo from "@/components/ui/Logo/Logo";
 import IconButton from "@/components/ui/IconButton/IconButton";
-import Input from "@/components/ui/Input/Input";
+import Navigation from "@/components/ui/Navigation/Navigation";
+import SearchBar from "@/components/ui/SearchBar/SearchBar";
 
 import {
   AlignJustify as MenuIcon,
-  Search as SearchIcon,
   ShoppingCart as CardIcon,
   CircleUserRound as ProfileIcon,
 } from "lucide-react";
-import Navigation from "@/components/ui/Navigation/Navigation";
 
 export default function Header() {
   return (
@@ -21,27 +20,7 @@ export default function Header() {
         <Navigation />
       </div>
       <div className="flex items-center justify-end gap-2 lg:w-full">
-        <div className="relative lg:flex-1 lg:mr-2 max-w-sm">
-          <div className="hidden relative lg:block">
-            <label htmlFor="serch" className="sr-only">
-              Search products
-            </label>
-            <Input
-              id="search"
-              type="text"
-              placeholder="Search for products..."
-            />
-            <SearchIcon
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-zinc-400"
-              strokeWidth={2.5}
-            />
-          </div>
-          <div className="flex lg:hidden">
-            <IconButton href="/">
-              <SearchIcon className="w-6 h-6" strokeWidth={2.5} />
-            </IconButton>
-          </div>
-        </div>
+        <SearchBar />
         <IconButton href="/">
           <CardIcon className="w-6 h-6" strokeWidth={2.5} />
         </IconButton>
