@@ -20,9 +20,9 @@ export default function ProductCard({
   discountPercentage,
 }: ProductCardProps) {
   return (
-    <li className="mb-8 lg:mb-0 basis-[25%]">
+    <li className="basis-[25%] mb-8 lg:mb-0 min-h-full">
       <Link
-        className="flex flex-col h-wull p-4 transition-transform duration-300 hover:-translate-y-2 
+        className="flex flex-col min-h-full p-4 transition-transform duration-300 hover:-translate-y-2 
           hover:shadow-[0_0_20px_rgba(0,0,0,0.1)] 
           rounded-3xl cursor-pointer"
         href="/"

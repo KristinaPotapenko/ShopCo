@@ -39,8 +39,8 @@ const bestsellers: Product[] = [
 
 export default function Bestsellers() {
   return (
-    <section className="container flex flex-col lg:items-center mx-auto py-16 px-4">
-      <SectionTitle>top selling</SectionTitle>
+    <section className="container flex flex-col lg:items-center mx-auto pt-24 pb-16 px-4">
+      <SectionTitle hasMargin={false}>top selling</SectionTitle>
       <ul className="flex justify-between gap-6 w-full p-6 mb-10 md:mb-14 mx-auto overflow-x-auto">
         {bestsellers.map((bestseller) => {
           return (
