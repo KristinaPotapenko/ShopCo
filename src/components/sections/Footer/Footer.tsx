@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import Logo from "@/components/ui/Logo/Logo";
+
 import { Twitter, Facebook, Instagram, Github } from "lucide-react";
 
 export default function Footer() {
@@ -9,15 +11,7 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row md:justify-between md:gap-6 pb-10 md:pb-12 border-b border-zinc-200">
           <div className="flex flex-col items-start">
-            <Link
-              className="relative mb-5 md:mb-6 font-montserrat text-2xl md:text-3xl font-extrabold outline-none 
-             after:block after:h-0.5 after:w-0 after:bg-black after:absolute after:-bottom-1 after:left-0
-             hover:after:w-full focus:after:w-full
-             after:transition-width after:duration-300 after:ease-in-out"
-              href="/"
-            >
-              SHOP.CO
-            </Link>
+            <Logo className="mb-5 md:mb-6 text-2xl md:text-3xl" />
             <p className="md:max-w-52 font-normal text-black/60 mb-5 md:mb-8">
               We have clothes that suits your style and which you’re proud to
               wear. From women to men.

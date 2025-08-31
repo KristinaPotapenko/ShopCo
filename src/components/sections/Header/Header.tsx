@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import Logo from "@/components/ui/Logo/Logo";
 import IconButton from "@/components/ui/IconButton/IconButton";
 import NavLink from "@/components/ui/NavLink/NavLink";
 import Input from "@/components/ui/Input/Input";
@@ -19,15 +18,7 @@ export default function Header() {
         <IconButton className="lg:hidden cursor-pointer">
           <MenuIcon className="w-6 h-6" strokeWidth={2.5} />
         </IconButton>
-        <Link
-          href="/"
-          className="relative font-montserrat text-2xl font-extrabold outline-none 
-             after:block after:h-0.5 after:w-0 after:bg-black after:absolute after:-bottom-1 after:left-0
-             hover:after:w-full focus:after:w-full
-             after:transition-width after:duration-300 after:ease-in-out"
-        >
-          SHOP.CO
-        </Link>
+        <Logo className="text-2xl" />
         <ul className="hidden lg:flex lg:items-center lg:gap-6">
           <li className="flex items-center gap-1.5 cursor-pointer">
             <NavLink href="/">Shop</NavLink>
