@@ -1,6 +1,5 @@
 import Logo from "@/components/ui/Logo/Logo";
 import IconButton from "@/components/ui/IconButton/IconButton";
-import NavLink from "@/components/ui/NavLink/NavLink";
 import Input from "@/components/ui/Input/Input";
 
 import {
@@ -8,8 +7,8 @@ import {
   Search as SearchIcon,
   ShoppingCart as CardIcon,
   CircleUserRound as ProfileIcon,
-  ChevronDown as ArrowIcon,
 } from "lucide-react";
+import Navigation from "@/components/ui/Navigation/Navigation";
 
 export default function Header() {
   return (
@@ -19,24 +18,10 @@ export default function Header() {
           <MenuIcon className="w-6 h-6" strokeWidth={2.5} />
         </IconButton>
         <Logo className="text-2xl" />
-        <ul className="hidden lg:flex lg:items-center lg:gap-6">
-          <li className="flex items-center gap-1.5 cursor-pointer">
-            <NavLink href="/">Shop</NavLink>
-            <ArrowIcon className="w-5 h-5" />
-          </li>
-          <li>
-            <NavLink href="/">On Sale</NavLink>
-          </li>
-          <li>
-            <NavLink href="/">New Arrivals</NavLink>
-          </li>
-          <li>
-            <NavLink href="/">Brand</NavLink>
-          </li>
-        </ul>
+        <Navigation />
       </div>
       <div className="flex items-center justify-end gap-2 lg:w-full">
-        <div className="relative lg:flex-1 lg:mr-8 max-w-sm">
+        <div className="relative lg:flex-1 lg:mr-2 max-w-sm">
           <div className="hidden relative lg:block">
             <label htmlFor="serch" className="sr-only">
               Search products
