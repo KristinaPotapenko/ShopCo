@@ -1,7 +1,12 @@
 import type { Config } from "tailwindcss";
 
-export default {
-  content: [],
+const config: Config = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     fontFamily: {
       montserrat: ["var(--font-montserrat)", "sans-serif"],
@@ -10,4 +15,6 @@ export default {
     extend: {},
   },
   plugins: [],
-} satisfies Config;
+};
+
+export default config;
