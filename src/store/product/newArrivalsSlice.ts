@@ -45,7 +45,7 @@ export const getNewArrivals = createAsyncThunk(
       }));
     } catch (error: any) {
       return rejectWithValue(
-        error.response?.data?.message || "Не удалось загрузить товары"
+        error.response?.data?.message || "Unable to load products"
       );
     }
   }
