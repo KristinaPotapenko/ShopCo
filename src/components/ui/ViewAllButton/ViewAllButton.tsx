@@ -1,6 +1,10 @@
 import Link from "next/link";
 
-export default function ViewAllButton() {
+interface ViewAllButtonProps {
+  children: React.ReactNode;
+}
+
+export default function ViewAllButton({ children }: ViewAllButtonProps) {
   return (
     <Link
       className="flex items-center justify-center md:self-center py-3.5 px-20 font-semibold border border-zinc-200 rounded-[60px]
@@ -9,7 +13,7 @@ export default function ViewAllButton() {
               active:bg-zinc-100 transition-colors duration-300"
       href="/"
     >
-      View All
+      {children}
     </Link>
   );
 }
