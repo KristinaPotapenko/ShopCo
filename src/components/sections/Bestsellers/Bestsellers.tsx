@@ -1,62 +1,42 @@
-import { Product } from "@/types/product";
+"use client";
 
-import ProductCard from "@/components/ui/cards/ProductCard/ProductCard";
+import { useEffect } from "react";
+
+import { useAppDispatch, useAppSelector } from "@/hooks/storeHooks";
+import {
+  getBestsellers,
+  selectBestsellers,
+} from "@/store/product/bestsellersSlice";
+
+import { useProductContent } from "@/hooks/useProductContent";
+
 import SectionTitle from "@/components/ui/SectionTitle/SectionTitle";
 import ViewAllButton from "@/components/ui/ViewAllButton/ViewAllButton";
 
-const bestsellers: Product[] = [
-  {
-    id: 1,
-    image: "/bestsellers/bestseller_01.jpg",
-    title: "VERTICAL STRIPED SHIRT",
-    rating: 4.5,
-    price: 120,
-    oldPrice: 232,
-    discountPercentage: 20,
-  },
-  {
-    id: 2,
-    image: "/bestsellers/bestseller_02.jpg",
-    title: "COURAGE GRAPHIC T-SHIRT",
-    rating: 4.0,
-    price: 145,
-  },
-  {
-    id: 3,
-    image: "/bestsellers/bestseller_03.jpg",
-    title: "LOOSE FIT BERMUDA SHORTS",
-    rating: 3.0,
-    price: 80,
-  },
-  {
-    id: 4,
-    image: "/bestsellers/bestseller_04.jpg",
-    title: "FADED SKINNY JEANS",
-    rating: 4.5,
-    price: 210,
-  },
-];
-
 export default function Bestsellers() {
+  const dispatch = useAppDispatch();
+  const { products, status, error } = useAppSelector(selectBestsellers);
+
+  useEffect(() => {
+    dispatch(getBestsellers());
+  }, []);
+
+  const renderContent = useProductContent(
+    products,
+    status,
+    error,
+    getBestsellers
+  );
+
   return (
     <section className="container flex flex-col lg:items-center mx-auto pt-24 pb-16 px-4">
       <SectionTitle hasMargin={false}>top selling</SectionTitle>
-      <ul className="flex justify-between gap-6 w-full p-6 mb-10 md:mb-14 mx-auto overflow-x-auto">
-        {bestsellers.map((bestseller) => {
-          return (
-            <ProductCard
-              key={bestseller.id}
-              image={bestseller.image}
-              title={bestseller.title}
-              rating={bestseller.rating}
-              price={bestseller.price}
-              oldPrice={bestseller?.oldPrice}
-              discountPercentage={bestseller?.discountPercentage}
-            />
-          );
-        })}
-      </ul>
-      <ViewAllButton />
+
+      {renderContent}
+
+      {status === "succeeded" && products.length > 0 && (
+        <ViewAllButton>View All</ViewAllButton>
+      )}
     </section>
   );
 }
