@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import newArrivalsReducer from "./product/newArrivalsSlice";
+import bestsellersReducer from "./product/bestsellersSlice";
 
 export const store = configureStore({
   reducer: {
     newArrivals: newArrivalsReducer,
+    bestsellers: bestsellersReducer,
   },
 });
 
