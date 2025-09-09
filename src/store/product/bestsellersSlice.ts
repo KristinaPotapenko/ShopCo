@@ -5,12 +5,19 @@ import { RootState } from "../store";
 import { API_BASE } from "@/constants/constance";
 import { Product } from "@/types/product";
 
-async function fetchBestsellers(limit: number = 4): Promise<Product[]> {
-  const response = await axios.get(
-    `${API_BASE}/products?limit=${limit}&select=title,price,discountPercentage,rating,images`
-  );
+async function fetchBestsellers(limit: number = 10): Promise<Product[]> {
+  const response = await axios.get(`${API_BASE}/products`, {
+    params: {
+      limit,
+      select: "title,price,discountPercentage,rating,images",
+    },
+  });
 
-  return response.data.products;
+  const products = response.data.products
+    .sort((a: any, b: any) => b.rating - a.rating)
+    .slice(0, 4);
+
+  return products;
 }
 
 export const getBestsellers = createAsyncThunk(
