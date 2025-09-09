@@ -17,3 +17,33 @@ ul::-webkit-scrollbar-thumb {
 ul::-webkit-scrollbar-button {
   display: none;
 }
+
+@keyframes super-glow-shimmer {
+  0% {
+    transform: translateX(-120%) skewX(-15deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0%) skewX(-15deg);
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(120%) skewX(-15deg);
+    opacity: 0;
+  }
+}
+
+.animate-super-glow-shimmer {
+  animation: super-glow-shimmer 2.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.super-glow-effect {
+  filter: blur(1.5px);
+  mix-blend-mode: screen;
+}
