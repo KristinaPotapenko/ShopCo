@@ -1,23 +1,9 @@
-import { API_BASE } from "@/constants/constance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+
 import { RootState } from "../store";
-
-export interface Product {
-  id: number;
-  title: string;
-  price: number | null;
-  discountPercentage: number | null;
-  rating: number | null;
-  images: string[];
-}
-
-export interface ApiResponse {
-  products: Product[];
-  total: number;
-  skip: number;
-  limit: number;
-}
+import { API_BASE } from "@/constants/constance";
+import { Product } from "@/types/product";
 
 async function fetchNewArrivals(limit: number = 4): Promise<Product[]> {
   const response = await axios.get(
@@ -34,14 +20,14 @@ export const getNewArrivals = createAsyncThunk(
       const response = await fetchNewArrivals();
 
       return response.map((product) => ({
-        id: product.id,
-        title: product.title,
-        price: product.price ? +product.price.toFixed(2) : null,
-        discountPercentage: product.discountPercentage
+        id: product?.id,
+        title: product?.title,
+        price: product?.price ? +product.price.toFixed(2) : null,
+        discountPercentage: product?.discountPercentage
           ? +product.discountPercentage.toFixed(1)
           : null,
-        rating: product.rating ? +product.rating.toFixed(1) : null,
-        images: product.images ?? [],
+        rating: product?.rating ? +product.rating.toFixed(1) : null,
+        images: product?.images ?? [],
       }));
     } catch (error: any) {
       return rejectWithValue(
@@ -63,7 +49,7 @@ const initialState: NewArrivalsState = {
   error: null,
 };
 
-export const newArrivalsSlice = createSlice({
+const newArrivalsSlice = createSlice({
   name: "newArrivals",
   initialState,
   reducers: {},

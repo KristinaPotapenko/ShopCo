@@ -1,9 +1,8 @@
 export type Product = {
   id: number;
-  image: string;
   title: string;
-  rating: number;
-  price: number;
-  oldPrice?: number;
-  discountPercentage?: number;
+  price: number | null;
+  discountPercentage: number | null;
+  rating: number | null;
+  images: string[];
 };
