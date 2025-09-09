@@ -25,7 +25,7 @@ export const useProductContent = (
       return <div className="w-full text-center py-10">No products found</div>;
     }
     return (
-      <ul className="flex justify-between gap-6 w-full p-6 mb-10 md:mb-14 mx-auto overflow-x-auto">
+      <ul className="flex justify-between gap-6 w-full p-6 mt-10 mb-10 md:mb-14 mx-auto overflow-x-auto">
         {products.map((product) => (
           <ProductCard
             key={product.id}
