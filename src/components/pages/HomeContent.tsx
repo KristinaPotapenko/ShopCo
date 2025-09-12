@@ -2,7 +2,7 @@ import Hero from "@/components/sections/Hero/Hero";
 import Partners from "@/components/sections/Partners/Partners";
 import NewArrivals from "@/components/sections/NewArrivals/NewArrivals";
 import Bestsellers from "@/components/sections/Bestsellers/Bestsellers";
-import Styles from "@/components/sections/Styles/Styles";
+import Categories from "@/components/sections/Categories/Categories";
 import Customers from "@/components/sections/Customers/Customers";
 import Newsletter from "@/components/sections/Newsletter/Newsletter";
 
@@ -13,7 +13,7 @@ export default function HomeContent() {
       <Partners />
       <NewArrivals />
       <Bestsellers />
-      <Styles />
+      <Categories />
       <Customers />
       <Newsletter />
     </main>
