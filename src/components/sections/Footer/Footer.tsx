@@ -16,46 +16,60 @@ export default function Footer() {
               We have clothes that suits your style and which you’re proud to
               wear. From women to men.
             </p>
-            <ul className="flex items-center gap-3 mb-6 md:mb-0">
-              <li
+            <div className="flex items-center gap-3 mb-6 md:mb-0">
+              <a
+                href="https://x.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-3 bg-white border border-zinc-200 rounded-full
-              transition-all duration-300 text-black
-             hover:bg-zinc-800 hover:text-white hover:ring-2 hover:ring-offset-2 hover:ring-black
-             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black
-             active:bg-zinc-700 cursor-pointer"
+    transition-all duration-300 text-black
+    hover:bg-zinc-800 hover:text-white hover:ring-2 hover:ring-offset-2 hover:ring-black
+    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black
+    active:bg-zinc-700 cursor-pointer
+    flex items-center justify-center"
               >
                 <Twitter className="w-5 h-5" />
-              </li>
-              <li
+              </a>
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-3 bg-white border border-zinc-200 rounded-full
-              transition-all duration-300 text-black
-             hover:bg-zinc-800 hover:text-white hover:ring-2 hover:ring-offset-2 hover:ring-black
-             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black
-             active:bg-zinc-700 cursor-pointer"
+    transition-all duration-300 text-black
+    hover:bg-zinc-800 hover:text-white hover:ring-2 hover:ring-offset-2 hover:ring-black
+    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black
+    active:bg-zinc-700 cursor-pointer
+    flex items-center justify-center"
               >
-                {" "}
                 <Facebook className="w-5 h-5" />
-              </li>
-              <li
+              </a>
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-3 bg-white border border-zinc-200 rounded-full
-              transition-all duration-300 text-black
-             hover:bg-zinc-800 hover:text-white hover:ring-2 hover:ring-offset-2 hover:ring-black
-             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black
-             active:bg-zinc-700 cursor-pointer"
+    transition-all duration-300 text-black
+    hover:bg-zinc-800 hover:text-white hover:ring-2 hover:ring-offset-2 hover:ring-black
+    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black
+    active:bg-zinc-700 cursor-pointer
+    flex items-center justify-center"
               >
                 <Instagram className="w-5 h-5" />
-              </li>
-              <li
+              </a>
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-3 bg-white border border-zinc-200 rounded-full
-              transition-all duration-300 text-black
-             hover:bg-zinc-800 hover:text-white hover:ring-2 hover:ring-offset-2 hover:ring-black
-             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black
-             active:bg-zinc-700 cursor-pointer"
+    transition-all duration-300 text-black
+    hover:bg-zinc-800 hover:text-white hover:ring-2 hover:ring-offset-2 hover:ring-black
+    focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black
+    active:bg-zinc-700 cursor-pointer
+    flex items-center justify-center"
               >
-                {" "}
                 <Github className="w-5 h-5" />
-              </li>
-            </ul>
+              </a>
+            </div>
           </div>
           <ul className="grid grid-cols-2 lg:grid-cols-4 justify-between gap-x-4 md:gap-x-8 gap-y-8 font-normal text-zinc-500">
             <li className="flex flex-col items-start gap-2 md:gap-3">
