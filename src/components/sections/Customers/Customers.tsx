@@ -5,36 +5,25 @@ import { useEffect, useRef, useState } from "react";
 import SectionTitle from "@/components/ui/SectionTitle/SectionTitle";
 import ReviewCard from "@/components/ui/cards/ReviewCard/ReviewCard";
 import CarouselControls from "@/components/ui/CarouselControls/CarouselControls";
-
-const reviews = [
-  {
-    id: 1,
-    rating: 4.5,
-    name: "Sarah M.",
-    review:
-      "I'm blown away by the quality and style of the clothes I received from Shop.co. From casual wear to elegant dresses, every piece I've bought has exceeded my expectations.",
-  },
-  {
-    id: 2,
-    rating: 2,
-    name: "Alex K.",
-    review:
-      "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
-  },
-  {
-    id: 3,
-    rating: 3.5,
-    name: "James L.",
-    review:
-      "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends.",
-  },
-];
+import { useAppDispatch, useAppSelector } from "@/hooks/storeHooks";
+import { getComments, selectComments } from "@/store/commentsSlice";
+import { Comment } from "@/types/comment";
+import { SkeletonReviewCard } from "@/components/ui/cards/ReviewCard/SkeletonReviewCard";
+import PrimaryButton from "@/components/ui/PrimaryButton/PrimaryButton";
 
 export default function Customers() {
   const listRef = useRef<HTMLUListElement>(null);
+
   const [visibleSlides, setVisibleSlides] = useState(1);
   const [totalSteps, setTotalSteps] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  const dispatch = useAppDispatch();
+  const { comments, status, error } = useAppSelector(selectComments);
+
+  useEffect(() => {
+    dispatch(getComments());
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -64,12 +53,12 @@ export default function Customers() {
     setCurrentSlide(0);
 
     listRef.current.scrollTo({ left: 0, behavior: "auto" });
-  }, [visibleSlides, reviews]);
+  }, [visibleSlides, comments]);
 
   const scroll = (direction: "left" | "right") => {
     if (!listRef?.current) return;
 
-    const slideWidth = listRef.current.scrollWidth / reviews.length;
+    const slideWidth = listRef.current.scrollWidth / comments.length;
     const totalSlideWidth = visibleSlides === 1 ? slideWidth : slideWidth;
 
     const scrollAmount =
@@ -82,35 +71,81 @@ export default function Customers() {
     listRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
   };
 
+  const renderContent = (
+    comments: Comment[],
+    status: "idle" | "loading" | "succeeded" | "failed",
+    error: string | null,
+    retry: () => void
+  ) => {
+    if (status === "idle" || status === "loading") {
+      return (
+        <ul
+          ref={listRef}
+          className="flex lg:gap-5 scroll-smooth overflow-x-hidden"
+        >
+          {Array.from({ length: window.innerWidth >= 1024 ? 3 : 1 }).map(
+            (_, index) => (
+              <SkeletonReviewCard key={index} />
+            )
+          )}
+        </ul>
+      );
+    }
+
+    if (status === "succeeded") {
+      if (comments.length === 0) {
+        return (
+          <div className="w-full text-center py-10">No comments found</div>
+        );
+      }
+      return (
+        <ul
+          ref={listRef}
+          className="flex lg:gap-5 scroll-smooth overflow-x-hidden"
+        >
+          {comments.map((comment) => (
+            <ReviewCard
+              key={comment.id}
+              rating={comment.likes}
+              name={comment.user.fullName}
+              review={comment.body}
+            />
+          ))}
+        </ul>
+      );
+    }
+
+    if (status === "failed") {
+      return (
+        <div className="flex flex-col items-center justify-center gap-6 w-full text-center py-10 mt-4">
+          <p className="font-normal text-zinc-400">
+            Error loading products: {error}
+          </p>
+          <PrimaryButton type="button" onClick={retry}>
+            Try Again
+          </PrimaryButton>
+        </div>
+      );
+    }
+  };
+
   return (
     <section className="container px-4 pt-16 mx-auto">
       <div className="flex items-center justify-between gap-4 mb-6 lg:mb-10">
         <SectionTitle isCentered={false} hasMargin={false}>
           OUR HAPPY CUSTOMERS
         </SectionTitle>
-        <CarouselControls
-          currentSlide={currentSlide}
-          totalSteps={totalSteps}
-          scroll={scroll}
-        />
+        {comments?.length > 0 && (
+          <CarouselControls
+            currentSlide={currentSlide}
+            totalSteps={totalSteps}
+            scroll={scroll}
+          />
+        )}
       </div>
 
       <div className="overflow-hidden">
-        <ul
-          ref={listRef}
-          className="flex lg:gap-5 scroll-smooth overflow-x-hidden"
-        >
-          {reviews.map((review) => {
-            return (
-              <ReviewCard
-                key={review.id}
-                rating={review.rating}
-                name={review.name}
-                review={review.review}
-              />
-            );
-          })}
-        </ul>
+        {renderContent(comments, status, error, getComments)}
       </div>
     </section>
   );
