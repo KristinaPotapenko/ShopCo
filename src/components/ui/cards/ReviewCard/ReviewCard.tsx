@@ -24,7 +24,7 @@ export default function ReviewCard({
           <MoreIcon />
         </button>
       )}
-      <Stars className="mb-3 lg:mb-3.5" />
+      <Stars rating={rating} className="mb-3 lg:mb-3.5" />
       <div className="flex items-center gap-1.5 lg:gap-3 lg:mb-3">
         <h3 className="text-base lg:text-xl font-semibold">{name}</h3>
         <Check
