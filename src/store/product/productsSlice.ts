@@ -4,19 +4,41 @@ import axios from "axios";
 import { Product } from "./productSlice";
 import { RootState } from "../store";
 
-const fetchProductsByCategory = async (
-  category: string
-): Promise<Product[]> => {
-  const response = await axios.get(`${API_BASE}/products/category/${category}`);
+interface FetchProductsResponse {
+  products: Product[];
+  totalProducts: number;
+}
 
-  return response?.data?.products;
+const fetchProductsByCategory = async (
+  category: string,
+  skip = 0,
+  limit = 10
+): Promise<FetchProductsResponse> => {
+  const response = await axios.get(
+    `${API_BASE}/products/category/${category}`,
+    {
+      params: { limit, skip },
+    }
+  );
+
+  return {
+    products: response?.data?.products,
+    totalProducts: response?.data?.total,
+  };
 };
 
 export const getProductsByCategory = createAsyncThunk(
   "/product/getProductByCategory",
-  async (category: string, { rejectWithValue }) => {
+  async (
+    {
+      category,
+      skip,
+      limit,
+    }: { category: string; skip?: number; limit?: number },
+    { rejectWithValue }
+  ) => {
     try {
-      const response = await fetchProductsByCategory(category);
+      const response = await fetchProductsByCategory(category, skip, limit);
 
       return response;
     } catch (error: any) {
@@ -29,12 +51,14 @@ export const getProductsByCategory = createAsyncThunk(
 
 interface ProductsState {
   products: Product[] | null;
+  totalProducts: number | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
 
 const initialState: ProductsState = {
   products: null,
+  totalProducts: null,
   status: "idle",
   error: null,
 };
@@ -51,7 +75,8 @@ const productsSlice = createSlice({
       })
       .addCase(getProductsByCategory.fulfilled, (state, { payload }) => {
         state.status = "succeeded";
-        state.products = payload;
+        state.products = payload.products;
+        state.totalProducts = payload.totalProducts;
       })
       .addCase(getProductsByCategory.rejected, (state, action) => {
         state.status = "failed";
