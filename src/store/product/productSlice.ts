@@ -64,32 +64,11 @@ const fetchProduct = async (id: number): Promise<Product> => {
   return response.data;
 };
 
-const fetchProductByCategory = async (category: string): Promise<Product> => {
-  const response = await axios.get(`${API_BASE}/products/category/${category}`);
-
-  return response.data;
-};
-
 export const getProduct = createAsyncThunk(
   "/product/getProduct",
   async (id: number, { rejectWithValue }) => {
     try {
       const response = await fetchProduct(id);
-
-      return response;
-    } catch (error: any) {
-      return rejectWithValue(
-        error.response?.data?.message || "Unable to load product"
-      );
-    }
-  }
-);
-
-export const getProductByCategory = createAsyncThunk(
-  "/product/getProductByCategory",
-  async (category: string, { rejectWithValue }) => {
-    try {
-      const response = await fetchProductByCategory(category);
 
       return response;
     } catch (error: any) {
@@ -115,18 +94,6 @@ const productSlice = createSlice({
         state.product = payload;
       })
       .addCase(getProduct.rejected, (state, action) => {
-        state.status = "failed";
-        state.error = action.payload as string;
-      })
-      .addCase(getProductByCategory.pending, (state) => {
-        state.status = "loading";
-        state.error = null;
-      })
-      .addCase(getProductByCategory.fulfilled, (state, { payload }) => {
-        state.status = "succeeded";
-        state.product = payload;
-      })
-      .addCase(getProductByCategory.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload as string;
       });
