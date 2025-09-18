@@ -39,7 +39,7 @@ export const Products = ({ category }: ProductsProps) => {
   ) => {
     if (status === "idle" || status === "loading") {
       return (
-        <ul className="grid grid-cols-1 justify-items-center [@media(min-width:450px)]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3.5 lg:gap-x-5 gap-y-6 lg:gap-y-9 mb-8">
+        <ul className="grid grid-cols-1 justify-items-center  [@media(min-width:450px)_and_(max-width:1023px)]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3.5 lg:gap-x-5 gap-y-6 lg:gap-y-9 mb-8">
           {Array.from({ length: 10 }).map((_, index) => (
             <SkeletonProductCard key={index} />
           ))}
@@ -54,7 +54,7 @@ export const Products = ({ category }: ProductsProps) => {
         );
       }
       return (
-        <ul className="grid grid-cols-1 justify-items-center [@media(min-width:450px)]:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-3.5 lg:gap-x-5 gap-y-6 lg:gap-y-9 mb-8">
+        <ul className="grid grid-cols-1 justify-items-center  [@media(min-width:450px)_and_(max-width:1023px)]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3.5 lg:gap-x-5 gap-y-6 lg:gap-y-9 mb-8">
           {products.map((product) => (
             <ProductCard
               key={product.id}
