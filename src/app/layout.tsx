@@ -7,6 +7,7 @@ import Header from "@/components/sections/Header/Header";
 import Footer from "@/components/sections/Footer/Footer";
 
 import "./globals.css";
+import ReduxProvider from "@/components/Providers/ReduxProvider";
 
 export const metadata: Metadata = {
   title: "SHOP CO",
@@ -24,10 +25,12 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${dmSans.variable} antialiased font-dm text-sm md:text-base font-light bg-white`}
       >
-        <AnnouncementBar />
-        <Header />
-        {children}
-        <Footer />
+        <ReduxProvider>
+          <AnnouncementBar />
+          <Header />
+          {children}
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   );
