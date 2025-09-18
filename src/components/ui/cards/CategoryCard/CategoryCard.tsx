@@ -1,10 +1,11 @@
 "use client";
 
-import { API_BASE } from "@/constants/constance";
-import axios from "axios";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import axios from "axios";
+
+import { API_BASE } from "@/constants/constance";
 
 interface StyleCardProps {
   name: string;
@@ -37,7 +38,7 @@ export default function CategoryCard({ name, isBigCol }: StyleCardProps) {
   return (
     <li
       className={`relative ${
-        isBigCol && "col-span-2"
+        isBigCol ? "xl:col-span-2" : ""
       } aspect-[3/2] w-full h-full max-h-[300px] bg-white rounded-3xl`}
     >
       <Link className="block min-w-full min-h-full" href={`/category/${name}`}>

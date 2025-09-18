@@ -1,6 +1,6 @@
+import { SkeletonCategoryCard } from "@/components/ui/cards/CategoryCard/SkeletonCategoryCard";
 import CategoryCard from "@/components/ui/cards/CategoryCard/CategoryCard";
 import PrimaryButton from "@/components/ui/PrimaryButton/PrimaryButton";
-import { SkeletonCategoryCard } from "@/components/ui/cards/CategoryCard/SkeletonCategoryCard";
 
 export const useCategoriesContect = (
   categories: string[],
@@ -20,8 +20,8 @@ export const useCategoriesContect = (
 
   if (status === "idle" || status === "loading") {
     return (
-      <ul className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5 mb-12">
-        {Array.from({ length: 4 }).map((_, index) => (
+      <ul className="grid grid-cols-1 xl:grid-cols-3 gap-4 lg:gap-5 mb-12">
+        {Array.from({ length: 10 }).map((_, index) => (
           <SkeletonCategoryCard
             isBigCol={calculateColumns(index)}
             key={index}
@@ -37,7 +37,7 @@ export const useCategoriesContect = (
     }
 
     return (
-      <ul className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5 mb-12">
+      <ul className="grid grid-cols-1 xl:grid-cols-3 gap-4 lg:gap-5 mb-12">
         {categories.map((category, index) => (
           <CategoryCard
             name={category}
