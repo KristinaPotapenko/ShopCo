@@ -2,14 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { useAppDispatch, useAppSelector } from "@/hooks/storeHooks";
+import { getComments, selectComments } from "@/store/commentsSlice";
+
+import { Comment } from "@/types/comment";
+
 import SectionTitle from "@/components/ui/SectionTitle/SectionTitle";
 import ReviewCard from "@/components/ui/cards/ReviewCard/ReviewCard";
 import CarouselControls from "@/components/ui/CarouselControls/CarouselControls";
-import { useAppDispatch, useAppSelector } from "@/hooks/storeHooks";
-import { getComments, selectComments } from "@/store/commentsSlice";
-import { Comment } from "@/types/comment";
-import { SkeletonReviewCard } from "@/components/ui/cards/ReviewCard/SkeletonReviewCard";
 import PrimaryButton from "@/components/ui/PrimaryButton/PrimaryButton";
+import { SkeletonReviewCard } from "@/components/ui/cards/ReviewCard/SkeletonReviewCard";
 
 export default function Customers() {
   const listRef = useRef<HTMLUListElement>(null);
@@ -29,11 +31,7 @@ export default function Customers() {
     const handleResize = () => {
       if (!listRef.current) return;
 
-      if (window.innerWidth >= 1024) {
-        setVisibleSlides(3);
-      } else {
-        setVisibleSlides(1);
-      }
+      setVisibleSlides(window.innerWidth >= 1024 ? 3 : 1);
 
       listRef.current.scrollTo({ left: 0, behavior: "auto" });
     };
@@ -83,11 +81,9 @@ export default function Customers() {
           ref={listRef}
           className="flex lg:gap-5 scroll-smooth overflow-x-hidden"
         >
-          {Array.from({ length: window.innerWidth >= 1024 ? 3 : 1 }).map(
-            (_, index) => (
-              <SkeletonReviewCard key={index} />
-            )
-          )}
+          {Array.from({ length: visibleSlides }).map((_, index) => (
+            <SkeletonReviewCard key={index} />
+          ))}
         </ul>
       );
     }
