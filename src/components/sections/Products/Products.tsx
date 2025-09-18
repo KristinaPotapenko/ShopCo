@@ -4,15 +4,17 @@ import { useEffect, useState } from "react";
 
 import { useAppDispatch } from "@/hooks/storeHooks";
 import { getProductsByCategory } from "@/store/product/productsSlice";
+import { getBestsellers } from "@/store/product/bestsellersSlice";
+import { getNewArrivals } from "@/store/product/newArrivalsSlice";
 
+import { formatType } from "@/helpers/formatType";
 import { useProductsContent } from "@/hooks/useProductsContent";
+import { useProductsByType } from "@/hooks/useProductsByType";
 
 import { Pagination } from "@/components/ui/Pagination/Pagination";
-import { useProductsByType } from "@/hooks/useProductsByType";
-import { getBestsellers } from "@/store/product/bestsellersSlice";
 
 interface ProductsProps {
-  type: "category" | "bestsellers";
+  type: "category" | "bestsellers" | "newArrivals";
   category?: string;
   isBestsellers?: boolean;
 }
@@ -24,14 +26,16 @@ export const Products = ({ type, category = "beauty" }: ProductsProps) => {
   const totalPages = totalProducts ? Math.ceil(totalProducts / 12) : 1;
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const fetchMap = {
-    category: () =>
-      getProductsByCategory({ category, skip: (currentPage - 1) * 12 }),
-    bestsellers: () => getBestsellers({ skip: (currentPage - 1) * 12 }),
-  } as const;
-
   useEffect(() => {
-    dispatch(fetchMap[type]());
+    if (type === "category") {
+      dispatch(
+        getProductsByCategory({ category, skip: (currentPage - 1) * 12 })
+      );
+    } else if (type === "bestsellers") {
+      dispatch(getBestsellers({ skip: (currentPage - 1) * 12 }));
+    } else if (type === "newArrivals") {
+      dispatch(getNewArrivals({ skip: (currentPage - 1) * 12 }));
+    }
   }, [type, category, currentPage]);
 
   const renderContent = useProductsContent(products || [], status, error, () =>
@@ -44,7 +48,7 @@ export const Products = ({ type, category = "beauty" }: ProductsProps) => {
         <h2 className="text-4xl font-extrabold">
           {type === "category"
             ? category[0].toUpperCase() + category.slice(1)
-            : "Bestsellers"}
+            : formatType(type)}
         </h2>
         <div className="flex flex-col sm:flex-row items-center gap-3 self-end">
           <p className="text-black/60 text-center">

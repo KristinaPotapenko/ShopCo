@@ -5,30 +5,35 @@ import { RootState } from "../store";
 import { API_BASE } from "@/constants/constance";
 import { Product } from "@/types/product";
 
-async function fetchNewArrivals(limit: number = 4): Promise<Product[]> {
-  const response = await axios.get(
-    `${API_BASE}/products?limit=${limit}&select=title,price,discountPercentage,rating,images`
-  );
+interface FetchNewArrivalsResponse {
+  products: Product[];
+  totalProducts: number;
+}
 
-  return response.data.products;
+async function fetchNewArrivals(
+  skip = 0,
+  limit = 12
+): Promise<FetchNewArrivalsResponse> {
+  const response = await axios.get(`${API_BASE}/products`, {
+    params: { limit, skip },
+  });
+
+  return {
+    products: response?.data?.products,
+    totalProducts: response?.data?.total,
+  };
 }
 
 export const getNewArrivals = createAsyncThunk(
   "product/getNewArrivals",
-  async (_, { rejectWithValue }) => {
+  async (
+    { skip, limit }: { skip?: number; limit?: number },
+    { rejectWithValue }
+  ) => {
     try {
-      const response = await fetchNewArrivals();
+      const { products, totalProducts } = await fetchNewArrivals(skip, limit);
 
-      return response.map((product) => ({
-        id: product?.id,
-        title: product?.title,
-        price: product?.price ? +product.price.toFixed(2) : null,
-        discountPercentage: product?.discountPercentage
-          ? +product.discountPercentage.toFixed(1)
-          : null,
-        rating: product?.rating ? +product.rating.toFixed(1) : null,
-        images: product?.images ?? [],
-      }));
+      return { products, totalProducts };
     } catch (error: any) {
       return rejectWithValue(
         error.response?.data?.message || "Unable to load products"
@@ -39,12 +44,14 @@ export const getNewArrivals = createAsyncThunk(
 
 interface NewArrivalsState {
   products: Product[];
+  totalProducts: number | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
 
 const initialState: NewArrivalsState = {
   products: [],
+  totalProducts: null,
   status: "idle",
   error: null,
 };
@@ -61,7 +68,8 @@ const newArrivalsSlice = createSlice({
       })
       .addCase(getNewArrivals.fulfilled, (state, { payload }) => {
         state.status = "succeeded";
-        state.products = payload;
+        state.products = payload.products;
+        state.totalProducts = payload.totalProducts;
       })
       .addCase(getNewArrivals.rejected, (state, action) => {
         state.status = "failed";

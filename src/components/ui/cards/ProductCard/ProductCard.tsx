@@ -38,7 +38,7 @@ export default function ProductCard({
           <div className="flex items-center gap-2.5 md:gap-3.5 mb-1 md:mb-2">
             <Stars rating={rating} />
             <p className="text-zinc-400 font-normal">
-              <span className="text-black">{rating}/</span>5
+              <span className="text-black">{rating.toFixed(1)}/</span>5
             </p>
           </div>
           <div className="flex items-center gap-1.5 md:gap-2.5">

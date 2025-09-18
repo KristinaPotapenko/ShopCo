@@ -17,15 +17,14 @@ export default function NewArrivals() {
   const dispatch = useAppDispatch();
   const { products, status, error } = useAppSelector(selectNewArrivals);
 
+  const newArrivals = products.slice(0, 4);
+
   useEffect(() => {
-    dispatch(getNewArrivals());
+    dispatch(getNewArrivals({}));
   }, []);
 
-  const renderContent = useProductContent(
-    products,
-    status,
-    error,
-    getNewArrivals
+  const renderContent = useProductContent(newArrivals, status, error, () =>
+    getNewArrivals({})
   );
 
   return (
@@ -34,7 +33,7 @@ export default function NewArrivals() {
 
       {renderContent}
 
-      {status === "succeeded" && products.length > 0 && (
+      {status === "succeeded" && newArrivals.length > 0 && (
         <ViewAllButton href="/products/newArrivals">View All</ViewAllButton>
       )}
     </section>

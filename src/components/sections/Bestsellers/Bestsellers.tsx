@@ -17,9 +17,7 @@ export default function Bestsellers() {
   const dispatch = useAppDispatch();
   const { products, status, error } = useAppSelector(selectBestsellers);
 
-  const bestsellers = products
-    .toSorted((a: any, b: any) => b.rating - a.rating)
-    .slice(0, 4);
+  const bestsellers = products.slice(0, 4);
 
   useEffect(() => {
     dispatch(getBestsellers({}));
