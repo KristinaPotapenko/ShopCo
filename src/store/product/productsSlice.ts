@@ -12,7 +12,7 @@ interface FetchProductsResponse {
 const fetchProductsByCategory = async (
   category: string,
   skip = 0,
-  limit = 10
+  limit = 12
 ): Promise<FetchProductsResponse> => {
   const response = await axios.get(
     `${API_BASE}/products/category/${category}`,

@@ -24,11 +24,11 @@ export const Products = ({ category }: ProductsProps) => {
   const { products, totalProducts, status, error } =
     useAppSelector(selectProducts);
 
-  const totalPages = totalProducts ? Math.ceil(totalProducts / 10) : 1;
+  const totalPages = totalProducts ? Math.ceil(totalProducts / 12) : 1;
   const [currentPage, setCurrentPage] = useState<number>(1);
 
   useEffect(() => {
-    dispatch(getProductsByCategory({ category, skip: (currentPage - 1) * 10 }));
+    dispatch(getProductsByCategory({ category, skip: (currentPage - 1) * 12 }));
   }, [category, currentPage]);
 
   const renderContent = (
@@ -40,7 +40,7 @@ export const Products = ({ category }: ProductsProps) => {
     if (status === "idle" || status === "loading") {
       return (
         <ul className="grid grid-cols-1 justify-items-center  [@media(min-width:450px)_and_(max-width:1023px)]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3.5 lg:gap-x-5 gap-y-6 lg:gap-y-9 mb-8">
-          {Array.from({ length: 10 }).map((_, index) => (
+          {Array.from({ length: 12 }).map((_, index) => (
             <SkeletonProductCard key={index} />
           ))}
         </ul>
@@ -107,7 +107,7 @@ export const Products = ({ category }: ProductsProps) => {
         </div>
       </div>
       {renderContent(products || [], status, error, () =>
-        getProductsByCategory({ category, skip: (currentPage - 1) * 10 })
+        getProductsByCategory({ category, skip: (currentPage - 1) * 12 })
       )}
       <Pagination
         currentPage={currentPage}
