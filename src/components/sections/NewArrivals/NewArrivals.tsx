@@ -35,7 +35,7 @@ export default function NewArrivals() {
       {renderContent}
 
       {status === "succeeded" && products.length > 0 && (
-        <ViewAllButton>View All</ViewAllButton>
+        <ViewAllButton href="/products/newArrivals">View All</ViewAllButton>
       )}
     </section>
   );

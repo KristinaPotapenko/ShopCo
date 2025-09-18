@@ -34,7 +34,7 @@ export default function Categories() {
         {renderContent}
 
         {status === "succeeded" && categories.length > 0 && (
-          <ViewAllButton>View All Categories</ViewAllButton>
+          <ViewAllButton href="/categories">View All Categories</ViewAllButton>
         )}
       </div>
     </section>

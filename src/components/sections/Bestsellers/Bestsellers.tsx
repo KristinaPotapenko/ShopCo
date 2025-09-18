@@ -35,7 +35,7 @@ export default function Bestsellers() {
       {renderContent}
 
       {status === "succeeded" && products.length > 0 && (
-        <ViewAllButton>View All</ViewAllButton>
+        <ViewAllButton href="/products/bestsellers">View All</ViewAllButton>
       )}
     </section>
   );
