@@ -15,13 +15,15 @@ async function fetchBestsellers(
   skip = 0,
   limit = 12
 ): Promise<FetchBestsellersResponse> {
-  const response = await axios.get(`${API_BASE}/products`, {
-    params: { limit, skip },
-  });
+  const response = await axios.get(`${API_BASE}/products`);
+
+  const products = response?.data?.products
+    .filter((product: Product) => product.rating >= 3)
+    .toSorted((a: Product, b: Product) => b.rating - a.rating);
 
   return {
-    products: response?.data?.products,
-    totalProducts: response?.data?.total,
+    products: products.slice(skip, skip + limit),
+    totalProducts: products?.length,
   };
 }
 
