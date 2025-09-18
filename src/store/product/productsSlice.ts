@@ -1,8 +1,10 @@
-import { API_BASE } from "@/constants/constance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Product } from "./productSlice";
+
 import { RootState } from "../store";
+import { API_BASE } from "@/constants/constance";
+
+import { Product } from "@/types/product";
 
 interface FetchProductsResponse {
   products: Product[];

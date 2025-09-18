@@ -23,7 +23,8 @@ export default function Categories() {
     newCategories,
     status,
     error,
-    getCategoriesList
+    getCategoriesList,
+    4
   );
 
   return (

@@ -6,7 +6,8 @@ export const useCategoriesContect = (
   categories: string[],
   status: "idle" | "loading" | "succeeded" | "failed",
   error: string | null,
-  retry: () => void
+  retry: () => void,
+  skeletonCount: number
 ) => {
   const calculateColumns = (i: number) => {
     const rowIndex = Math.floor(i / 2);
@@ -21,7 +22,7 @@ export const useCategoriesContect = (
   if (status === "idle" || status === "loading") {
     return (
       <ul className="grid grid-cols-1 xl:grid-cols-3 gap-4 lg:gap-5 mb-12">
-        {Array.from({ length: 10 }).map((_, index) => (
+        {Array.from({ length: skeletonCount }).map((_, index) => (
           <SkeletonCategoryCard
             isBigCol={calculateColumns(index)}
             key={index}

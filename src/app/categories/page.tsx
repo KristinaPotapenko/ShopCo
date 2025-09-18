@@ -22,7 +22,8 @@ export default function CategoriesPage() {
     categories,
     status,
     error,
-    getCategoriesList
+    getCategoriesList,
+    10
   );
 
   return (

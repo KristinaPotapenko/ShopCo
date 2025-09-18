@@ -2,95 +2,49 @@
 
 import { useEffect, useState } from "react";
 
-import { useAppDispatch, useAppSelector } from "@/hooks/storeHooks";
-import {
-  getProductsByCategory,
-  selectProducts,
-} from "@/store/product/productsSlice";
+import { useAppDispatch } from "@/hooks/storeHooks";
+import { getProductsByCategory } from "@/store/product/productsSlice";
 
-import { Product } from "@/store/product/productSlice";
+import { useProductsContent } from "@/hooks/useProductsContent";
 
 import { Pagination } from "@/components/ui/Pagination/Pagination";
-import ProductCard from "@/components/ui/cards/ProductCard/ProductCard";
-import SkeletonProductCard from "@/components/ui/cards/ProductCard/SkeletonProductCard";
-import PrimaryButton from "@/components/ui/PrimaryButton/PrimaryButton";
+import { useProductsByType } from "@/hooks/useProductsByType";
+import { getBestsellers } from "@/store/product/bestsellersSlice";
 
 interface ProductsProps {
-  category: string;
+  type: "category" | "bestsellers";
+  category?: string;
+  isBestsellers?: boolean;
 }
 
-export const Products = ({ category }: ProductsProps) => {
+export const Products = ({ type, category = "beauty" }: ProductsProps) => {
   const dispatch = useAppDispatch();
-  const { products, totalProducts, status, error } =
-    useAppSelector(selectProducts);
+  const { products, totalProducts, status, error } = useProductsByType(type);
 
   const totalPages = totalProducts ? Math.ceil(totalProducts / 12) : 1;
   const [currentPage, setCurrentPage] = useState<number>(1);
 
+  const fetchMap = {
+    category: () =>
+      getProductsByCategory({ category, skip: (currentPage - 1) * 12 }),
+    bestsellers: () => getBestsellers({ skip: (currentPage - 1) * 12 }),
+  } as const;
+
   useEffect(() => {
-    dispatch(getProductsByCategory({ category, skip: (currentPage - 1) * 12 }));
-  }, [category, currentPage]);
+    dispatch(fetchMap[type]());
+  }, [type, category, currentPage]);
 
-  const renderContent = (
-    products: Product[],
-    status: "idle" | "loading" | "succeeded" | "failed",
-    error: string | null,
-    retry: () => void
-  ) => {
-    if (status === "idle" || status === "loading") {
-      return (
-        <ul className="grid grid-cols-1 justify-items-center  [@media(min-width:450px)_and_(max-width:1023px)]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3.5 lg:gap-x-5 gap-y-6 lg:gap-y-9 mb-8">
-          {Array.from({ length: 12 }).map((_, index) => (
-            <SkeletonProductCard key={index} />
-          ))}
-        </ul>
-      );
-    }
-
-    if (status === "succeeded") {
-      if (products.length === 0) {
-        return (
-          <div className="w-full text-center py-10">No products found</div>
-        );
-      }
-      return (
-        <ul className="grid grid-cols-1 justify-items-center  [@media(min-width:450px)_and_(max-width:1023px)]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3.5 lg:gap-x-5 gap-y-6 lg:gap-y-9 mb-8">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              id={product.id}
-              image={product.images[0]}
-              title={product.title}
-              rating={product.rating || 0}
-              price={product.price || 0}
-              discountPercentage={product?.discountPercentage || 0}
-            />
-          ))}
-        </ul>
-      );
-    }
-
-    if (status === "failed") {
-      return (
-        <div className="flex flex-col items-center justify-center gap-6 w-full text-center py-10 mt-4">
-          <p className="font-normal text-zinc-400">
-            Error loading products: {error}
-          </p>
-          <PrimaryButton type="button" onClick={retry}>
-            Try Again
-          </PrimaryButton>
-        </div>
-      );
-    }
-
-    return null;
-  };
+  const renderContent = useProductsContent(products || [], status, error, () =>
+    getProductsByCategory({ category, skip: (currentPage - 1) * 12 })
+  );
 
   return (
     <section className="container px-4 mx-auto pb-16">
       <div className="flex justify-between gap-4 font-normal mb-16">
         <h2 className="text-4xl font-extrabold">
-          {category[0].toUpperCase() + category.slice(1)}
+          {type === "category"
+            ? category[0].toUpperCase() + category.slice(1)
+            : "Bestsellers"}
         </h2>
         <div className="flex flex-col sm:flex-row items-center gap-3 self-end">
           <p className="text-black/60 text-center">
@@ -106,9 +60,7 @@ export const Products = ({ category }: ProductsProps) => {
           </div>
         </div>
       </div>
-      {renderContent(products || [], status, error, () =>
-        getProductsByCategory({ category, skip: (currentPage - 1) * 12 })
-      )}
+      {renderContent}
       <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}

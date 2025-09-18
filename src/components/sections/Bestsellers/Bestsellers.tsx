@@ -17,15 +17,16 @@ export default function Bestsellers() {
   const dispatch = useAppDispatch();
   const { products, status, error } = useAppSelector(selectBestsellers);
 
+  const bestsellers = products
+    .toSorted((a: any, b: any) => b.rating - a.rating)
+    .slice(0, 4);
+
   useEffect(() => {
-    dispatch(getBestsellers());
+    dispatch(getBestsellers({}));
   }, []);
 
-  const renderContent = useProductContent(
-    products,
-    status,
-    error,
-    getBestsellers
+  const renderContent = useProductContent(bestsellers, status, error, () =>
+    getBestsellers({})
   );
 
   return (
@@ -34,7 +35,7 @@ export default function Bestsellers() {
 
       {renderContent}
 
-      {status === "succeeded" && products.length > 0 && (
+      {status === "succeeded" && bestsellers.length > 0 && (
         <ViewAllButton href="/products/bestsellers">View All</ViewAllButton>
       )}
     </section>

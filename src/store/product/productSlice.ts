@@ -4,47 +4,7 @@ import axios from "axios";
 import { RootState } from "../store";
 import { API_BASE } from "@/constants/constance";
 
-interface Review {
-  rating: string;
-  comment: string;
-  date: string;
-  reviewerName: string;
-  reviewerEmai: string;
-}
-
-export interface Product {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  tags: string[];
-  brand: string;
-  sku: string;
-  weight: number;
-  dimensions: {
-    width: number;
-    height: number;
-    depth: number;
-  };
-  warrantyInformation: string;
-  shippingInformation: string;
-  availabilityStatus: string;
-  reviews: Review[];
-  returnPolicy: string;
-  minimumOrderQuantity: number;
-  meta: {
-    createdAt: string;
-    updatedAt: string;
-    barcode: string;
-    qrCode: string;
-  };
-  thumbnail: string;
-  images: string[];
-}
+import { Product } from "@/types/product";
 
 interface ProductState {
   product: Product | null;

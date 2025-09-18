@@ -5,13 +5,7 @@ import Newsletter from "@/components/sections/Newsletter/Newsletter";
 
 import { ChevronDown as ArrowIcon } from "lucide-react";
 
-interface CategoriesPageProps {
-  params: Promise<{ category: string }>;
-}
-
-export default async function CategoryPage({ params }: CategoriesPageProps) {
-  const { category } = await params;
-
+export default function BestsellersPage() {
   return (
     <main>
       <nav className="container px-4 mx-auto pb-9">
@@ -24,14 +18,14 @@ export default async function CategoryPage({ params }: CategoriesPageProps) {
               <ArrowIcon className="w-4 text-black/60 rotate-[-90deg]" />
             </li>
             <li>
-              <Link className="font-normal" href={`/category/${category}`}>
-                {category[0].toUpperCase() + category.slice(1)}
+              <Link className="font-normal" href={`/product/bestsellers`}>
+                Bestsellers
               </Link>
             </li>
           </ul>
         </div>
       </nav>
-      <Products type="category" category={category} />
+      <Products type="bestsellers" />
       <Newsletter />
     </main>
   );
