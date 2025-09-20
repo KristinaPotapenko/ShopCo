@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 
 import { montserrat, dmSans } from "@/components/ui/fonts";
 
+import ReduxProvider from "@/components/Providers/ReduxProvider";
+
 import AnnouncementBar from "@/components/sections/AnnouncementBar/AnnouncementBar";
 import Header from "@/components/sections/Header/Header";
 import Footer from "@/components/sections/Footer/Footer";
 
 import "./globals.css";
-import ReduxProvider from "@/components/Providers/ReduxProvider";
 
 export const metadata: Metadata = {
   title: "SHOP CO",
