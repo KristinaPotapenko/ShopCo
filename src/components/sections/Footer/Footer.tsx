@@ -7,7 +7,7 @@ import { Twitter, Facebook, Instagram, Github } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F2F0F1] pb-16 pt-40 md:pb-20">
+    <footer className="bg-[#F2F0F1] pb-16 pt-48 xl:pt-40 md:pb-20">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row md:justify-between md:gap-6 pb-10 md:pb-12 border-b border-zinc-200">
           <div className="flex flex-col items-start">
