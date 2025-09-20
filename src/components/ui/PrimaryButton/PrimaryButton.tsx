@@ -14,7 +14,7 @@ export default function PrimaryButton({
   children,
 }: PrimaryButtonProps) {
   const baseStyle =
-    "flex items-center justify-center py-4 px-16 text-white font-semibold bg-black rounded-[60px] " +
+    "flex items-center justify-center py-3 lg:py-4 px-16 text-white font-semibold bg-black rounded-[60px] " +
     "transition-all duration-200 " +
     "hover:bg-zinc-800 " +
     "active:scale-95 active:bg-zinc-900 " +
