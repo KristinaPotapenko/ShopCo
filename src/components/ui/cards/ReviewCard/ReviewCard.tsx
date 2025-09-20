@@ -6,7 +6,7 @@ interface ReviewCardProps {
   rating: number;
   name: string;
   review: string;
-  date?: string;
+  date?: string | Date;
   showActions?: boolean;
 }
 
@@ -17,8 +17,16 @@ export default function ReviewCard({
   date,
   showActions = false,
 }: ReviewCardProps) {
+  const formattedDate = date
+    ? new Date(date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : "";
+
   return (
-    <li className="relative min-w-full lg:min-w-[auto] lg:flex-[0_0_calc(33.333%_-_16px)] p-6 lg:py-7 lg:px-8 border border-zinc-200 rounded-3xl snap-start">
+    <li className="relative flex flex-col min-w-full lg:min-w-[auto] lg:flex-[0_0_calc(33.333%_-_16px)] p-6 lg:py-7 lg:px-8 border border-zinc-200 rounded-3xl snap-start">
       {showActions && (
         <button className="absolute right-4 top-4 text-zinc-400 hover:text-black">
           <MoreIcon />
@@ -32,10 +40,14 @@ export default function ReviewCard({
           strokeWidth={3}
         />
       </div>
-      <p className={`font-normal text-zinc-400 ${showActions ? "mb-6" : ""}`}>
+      <p
+        className={`flex-grow font-normal text-zinc-400 ${
+          showActions ? "mb-6" : ""
+        }`}
+      >
         <q>{review}</q>
       </p>
-      {date && <p className="font-normal text-black/60">Posted on {date}</p>}
+      <p className="font-normal text-black/60">Posted on {formattedDate}</p>
     </li>
   );
 }
