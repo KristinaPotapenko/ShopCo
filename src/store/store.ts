@@ -6,6 +6,7 @@ import categoriesReducer from "./categoriesSlice";
 import commentsReducer from "./commentsSlice";
 import productSlice from "./product/productSlice";
 import productsSlice from "./product/productsSlice";
+import loginSlice from "./auth/loginSlice";
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     comments: commentsReducer,
     product: productSlice,
     products: productsSlice,
+    login: loginSlice,
   },
 });
 
