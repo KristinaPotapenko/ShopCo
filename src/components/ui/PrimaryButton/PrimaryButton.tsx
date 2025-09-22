@@ -1,21 +1,27 @@
-import Link from "next/link";
+import { ButtonHTMLAttributes } from "react";
+import Link, { LinkProps } from "next/link";
 import clsx from "clsx";
 
-interface PrimaryButtonProps {
-  type?: "button";
-  onClick?: () => void;
+type Variant = "black" | "blue";
+
+interface BaseProps {
   className?: string;
-  variant?: "black" | "blue";
+  variant?: Variant;
   children: React.ReactNode;
 }
 
-export default function PrimaryButton({
-  type,
-  onClick,
-  className,
-  variant = "black",
-  children,
-}: PrimaryButtonProps) {
+type ButtonProps = BaseProps & ButtonHTMLAttributes<HTMLButtonElement>;
+
+type AnchorProps = BaseProps &
+  LinkProps & {
+    href: string;
+  };
+
+type PrimaryButtonProps = ButtonProps | AnchorProps;
+
+export default function PrimaryButton(props: PrimaryButtonProps) {
+  const { className, variant = "black", children } = props;
+
   const baseStyle =
     "flex items-center justify-center py-3 lg:py-4 px-16 font-semibold rounded-[60px] cursor-pointer transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
@@ -27,17 +33,17 @@ export default function PrimaryButton({
 
   const finalClass = clsx(baseStyle, variants[variant], className);
 
-  if (type === "button") {
+  if ("href" in props) {
     return (
-      <button className={finalClass} type="button" onClick={onClick}>
+      <Link {...props} className={finalClass}>
         {children}
-      </button>
+      </Link>
     );
   }
 
   return (
-    <Link className={finalClass} href="/">
+    <button {...props} className={finalClass}>
       {children}
-    </Link>
+    </button>
   );
 }
