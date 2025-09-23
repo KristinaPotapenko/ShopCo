@@ -7,6 +7,7 @@ import commentsReducer from "./commentsSlice";
 import productSlice from "./product/productSlice";
 import productsSlice from "./product/productsSlice";
 import loginSlice from "./auth/loginSlice";
+import userSlice from "./userSlice";
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
     product: productSlice,
     products: productsSlice,
     login: loginSlice,
+    user: userSlice,
   },
 });
 
