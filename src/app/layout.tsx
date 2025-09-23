@@ -24,12 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${montserrat.variable} ${dmSans.variable} antialiased font-dm text-sm md:text-base font-light bg-white`}
+        className={`${montserrat.variable} ${dmSans.variable} antialiased flex flex-col h-full font-dm text-sm md:text-base font-light bg-white`}
       >
         <ReduxProvider>
           <AnnouncementBar />
           <Header />
-          {children}
+          <main className="flex-grow">{children}</main>
           <Footer />
         </ReduxProvider>
       </body>

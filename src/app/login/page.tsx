@@ -87,7 +87,7 @@ export default function SignupPage() {
       case "loading":
         return (
           <div className="flex items-center justify-center w-full">
-            <div className="lg:w-40 lg:h-40 border-4 border-t-transparent border-zinc-300 rounded-full animate-spin"></div>
+            <div className="w-40 h-40 border-4 border-t-transparent border-zinc-300 rounded-full animate-spin"></div>
           </div>
         );
       case "succeeded":

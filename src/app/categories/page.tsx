@@ -27,13 +27,13 @@ export default function CategoriesPage() {
   );
 
   return (
-    <main>
+    <>
       <section className="container mx-auto pt-16 pb-0 xl:pb-16 px-4">
         <div className="px-6 py-10 lg:py-20 lg:px-16 bg-[#F0F0F0] rounded-[40px]">
           {renderContent}
         </div>
       </section>
       <Newsletter />
-    </main>
+    </>
   );
 }

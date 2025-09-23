@@ -13,7 +13,7 @@ export default async function CategoryPage({ params }: CategoriesPageProps) {
   const { category } = await params;
 
   return (
-    <main>
+    <>
       <nav className="container px-4 mx-auto pb-9">
         <div className="pt-6 border-t border-zinc-200">
           <ul className="flex items-center gap-3">
@@ -33,6 +33,6 @@ export default async function CategoryPage({ params }: CategoriesPageProps) {
       </nav>
       <Products type="category" category={category} />
       <Newsletter />
-    </main>
+    </>
   );
 }

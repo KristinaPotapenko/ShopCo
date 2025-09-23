@@ -8,7 +8,7 @@ import Newsletter from "@/components/sections/Newsletter/Newsletter";
 
 export default function HomeContent() {
   return (
-    <main>
+    <>
       <Hero />
       <Partners />
       <NewArrivals />
@@ -16,6 +16,6 @@ export default function HomeContent() {
       <Categories />
       <Customers />
       <Newsletter />
-    </main>
+    </>
   );
 }

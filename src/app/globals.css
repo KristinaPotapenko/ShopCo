@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  height: 100%;
+}
+
 ::-webkit-scrollbar {
   height: 8px;
   width: 8px;
