@@ -68,7 +68,8 @@ const loginSlice = createSlice({
         state.error = null;
       })
       .addCase(loginUser.fulfilled, (state, { payload }) => {
-        (state.status = "succeeded"), (state.loginInformation = payload);
+        state.status = "succeeded";
+        state.loginInformation = payload;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = "failed";
