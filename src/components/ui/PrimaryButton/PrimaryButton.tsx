@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react";
 import Link, { LinkProps } from "next/link";
 import clsx from "clsx";
 
-type Variant = "black" | "blue";
+type Variant = "black" | "blue" | "outline";
 
 interface BaseProps {
   className?: string;
@@ -29,6 +29,8 @@ export default function PrimaryButton(props: PrimaryButtonProps) {
     black:
       "bg-black text-white hover:bg-zinc-800 active:bg-zinc-900 focus:ring-black",
     blue: "bg-white text-blue-500 border border-blue-500 hover:bg-blue-50 active:bg-blue-100 focus:ring-blue-500",
+    outline:
+      "bg-white text-black border border-black hover:bg-zinc-50 active:bg-zinc-100 focus:ring-black",
   };
 
   const finalClass = clsx(baseStyle, variants[variant], className);
