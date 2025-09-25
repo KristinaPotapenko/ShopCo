@@ -20,6 +20,7 @@ export const ProductImages = ({ product }: ProductImagesProps) => {
         {product?.images.map((image, index) => {
           return (
             <Image
+              key={index}
               className={`border border-zinc-200 rounded-3xl cursor-pointer ${
                 selectedImage === index ? "border-zinc-400" : ""
               }`}
@@ -30,6 +31,7 @@ export const ProductImages = ({ product }: ProductImagesProps) => {
               alt="T-shirts"
               width={155}
               height={170}
+              priority
               onClick={() => handleSelectImage(index)}
             />
           );
@@ -44,6 +46,7 @@ export const ProductImages = ({ product }: ProductImagesProps) => {
         alt="T-shirts"
         width={450}
         height={540}
+        priority
       />
     </div>
   );

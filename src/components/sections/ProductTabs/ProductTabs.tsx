@@ -21,6 +21,7 @@ export const ProductTabs = ({ product }: ProductTabsProps) => {
         {tabs.map((tab, index) => {
           return (
             <li
+              key={index}
               className={`relative basis-2/6 cursor-pointer ${
                 activeTab === index ? "text-black" : ""
               }`}

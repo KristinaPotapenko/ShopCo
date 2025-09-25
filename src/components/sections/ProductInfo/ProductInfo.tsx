@@ -56,9 +56,12 @@ export const ProductInfo = ({ product }: ProductInfoProps) => {
       <div>
         <p className="mt-6 font-normal text-black/60">Tags</p>
         <ul className="flex flex-wrap gap-3 pt-4 pb-6 font-normal text-black/60 border-b border-zinc-200">
-          {product?.tags.map((tag) => {
+          {product?.tags.map((tag, index) => {
             return (
-              <li className="px-5 lg:px-6 py-2.5 lg:py-3 rounded-[60px] bg-zinc-100">
+              <li
+                key={index}
+                className="px-5 lg:px-6 py-2.5 lg:py-3 rounded-[60px] bg-zinc-100"
+              >
                 {tag}
               </li>
             );
