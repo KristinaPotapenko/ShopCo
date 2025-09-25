@@ -11,7 +11,9 @@ export default function HeroInfo() {
         designed to bring out your individuality and cater to your sense of
         style.
       </p>
-      <PrimaryButton className="md:mb-6">Shop Now</PrimaryButton>
+      <PrimaryButton className="md:mb-6" href="/products/bestsellers">
+        Shop Now
+      </PrimaryButton>
     </>
   );
 }

@@ -227,12 +227,14 @@ export default function Footer() {
               focus:outline-none 
               active:scale-95 cursor-pointer"
               >
-                <Image
-                  src="/payment/visa.svg"
-                  alt="Visa"
-                  width={32}
-                  height={20}
-                />
+                <div className="relative w-8 h-5">
+                  <Image
+                    src="/payment/visa.svg"
+                    alt="Visa"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </button>
             </li>
             <li>
@@ -243,12 +245,14 @@ export default function Footer() {
               focus:outline-none 
               active:scale-95 cursor-pointer"
               >
-                <Image
-                  src="/payment/mastercard.svg"
-                  alt="Mastercard"
-                  width={32}
-                  height={20}
-                />
+                <div className="relative w-8 h-5">
+                  <Image
+                    src="/payment/mastercard.svg"
+                    alt="Mastercard"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </button>
             </li>
             <li>
@@ -259,12 +263,14 @@ export default function Footer() {
               focus:outline-none 
               active:scale-95 cursor-pointer"
               >
-                <Image
-                  src="/payment/paypal.svg"
-                  alt="PayPal"
-                  width={32}
-                  height={20}
-                />
+                <div className="relative w-8 h-5">
+                  <Image
+                    src="/payment/paypal.svg"
+                    alt="PayPal"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </button>
             </li>
             <li>
@@ -275,13 +281,14 @@ export default function Footer() {
               focus:outline-none 
               active:scale-95 cursor-pointer"
               >
-                {" "}
-                <Image
-                  src="/payment/applePay.svg"
-                  alt="Apple Pay"
-                  width={32}
-                  height={20}
-                />
+                <div className="relative w-8 h-5">
+                  <Image
+                    src="/payment/applePay.svg"
+                    alt="Apple Pay"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </button>
             </li>
             <li>
@@ -292,12 +299,14 @@ export default function Footer() {
               focus:outline-none 
               active:scale-95 cursor-pointer"
               >
-                <Image
-                  src="/payment/googlePay.svg"
-                  alt="Google Pay"
-                  width={32}
-                  height={20}
-                />
+                <div className="relative w-8 h-5">
+                  <Image
+                    src="/payment/googlePay.svg"
+                    alt="Google Pay"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </button>
             </li>
           </ul>

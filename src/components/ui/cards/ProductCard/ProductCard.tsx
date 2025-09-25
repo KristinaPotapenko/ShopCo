@@ -29,7 +29,13 @@ export default function ProductCard({
         href={`/product/${id}`}
       >
         <div className="relative aspect-square w-full mb-2.5 md:mb-4">
-          <Image src={image} alt="" fill className="object-cover rounded-3xl" />
+          <Image
+            src={image}
+            alt=""
+            fill
+            sizes="288px"
+            className="object-cover rounded-3xl"
+          />
         </div>
         <div className="flex flex-col grow">
           <h3 className="grow text-base md:text-xl font-semibold mb-1 md:mb-2">

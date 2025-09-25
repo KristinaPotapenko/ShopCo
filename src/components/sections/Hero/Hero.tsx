@@ -33,7 +33,8 @@ export default function Hero() {
             className={`object-cover object-top transition-opacity duration-500 ${
               loadedImage ? "opacity-100" : "opacity-0"
             }`}
-            onLoadingComplete={() => setLoadedImage(true)}
+            sizes="(max-width: 768px) 100vw, 40vw"
+            onLoad={() => setLoadedImage(true)}
           />
         </div>
       </section>
