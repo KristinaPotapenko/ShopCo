@@ -28,6 +28,8 @@ export default function SignupPage() {
     Cookies.set("accessToken", loginInformation.accessToken, { expires: 0.5 });
 
     Cookies.set("refreshToken", loginInformation.refreshToken, { expires: 7 });
+
+    Cookies.set("userId", loginInformation.id.toString());
   }
 
   const changeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
