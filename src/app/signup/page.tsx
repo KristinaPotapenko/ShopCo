@@ -61,12 +61,14 @@ export default function SignupPage() {
                 type="password"
                 name="password"
                 placeholder="Password"
+                autoComplete="password"
                 required
               />
               <FormInput
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
+                autoComplete="confirm-password"
                 required
               />
               <PrimaryButton
@@ -109,11 +111,12 @@ export default function SignupPage() {
     <div className="fixed inset-0 w-full h-full overflow-y-auto bg-white z-10">
       <div className="flex flex-col lg:flex-row items-center justify-center gap-16 w-full h-full px-4 py-4 lg:py-16 xl:py-32 lg:px-20 xl:px-36">
         <Image
-          className="flex-shrink rounded-lg"
+          className=" rounded-lg"
           src="/hero-models.jpg"
           alt=""
           width={670}
           height={800}
+          priority
         />
         <div className="flex flex-col items-center lg:items-start gap-12 w-full">
           {renderContent(status)}

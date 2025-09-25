@@ -67,6 +67,7 @@ export default function SignupPage() {
                 value={loginData.password}
                 onChange={(e) => changeInput(e)}
                 placeholder="Password"
+                autoComplete="password"
                 required
               />
               <PrimaryButton className="mt-11" type="submit">
@@ -120,6 +121,7 @@ export default function SignupPage() {
           alt=""
           width={670}
           height={800}
+          priority
         />
         <div className="flex flex-col items-center lg:items-start gap-12 w-full max-w-4xl">
           {renderContent(status, () => dispatch(resetLoginState()))}
