@@ -2,6 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 import { Product } from "@/types/product";
+import { BASE_IMAGE } from "@/constants/constance";
 
 interface ProductImagesProps {
   product: Product | null | undefined;
@@ -24,10 +25,7 @@ export const ProductImages = ({ product }: ProductImagesProps) => {
               className={`border border-zinc-200 rounded-3xl cursor-pointer ${
                 selectedImage === index ? "border-zinc-400" : ""
               }`}
-              src={
-                image ||
-                "https://png.klev.club/uploads/posts/2024-03/thumbs/png-klev-club-p-pustoi-png-2.png"
-              }
+              src={image || BASE_IMAGE}
               alt="T-shirts"
               width={155}
               height={170}
@@ -39,10 +37,7 @@ export const ProductImages = ({ product }: ProductImagesProps) => {
       </div>
       <Image
         className="border border-zinc-200 rounded-3xl"
-        src={
-          product?.images[selectedImage] ||
-          "https://png.klev.club/uploads/posts/2024-03/thumbs/png-klev-club-p-pustoi-png-2.png"
-        }
+        src={product?.images[selectedImage] || BASE_IMAGE}
         alt="T-shirts"
         width={450}
         height={540}

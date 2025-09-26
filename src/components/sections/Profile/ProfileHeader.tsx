@@ -1,15 +1,13 @@
 import Image from "next/image";
 
 import { User } from "@/types/user";
+import { BASE_IMAGE } from "@/constants/constance";
 
 export const ProfileHeader = ({ user }: { user: User }) => {
   return (
     <div className="flex flex-col items-center gap-4">
       <Image
-        src={
-          user.image ||
-          "https://png.klev.club/uploads/posts/2024-03/thumbs/png-klev-club-p-pustoi-png-2.png"
-        }
+        src={user.image || BASE_IMAGE}
         alt={user.username}
         width={128}
         height={128}
