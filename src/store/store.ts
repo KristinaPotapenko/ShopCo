@@ -9,6 +9,7 @@ import productsSlice from "./product/productsSlice";
 import loginSlice from "./auth/loginSlice";
 import userSlice from "./userSlice";
 import cardSlice from "./cardSlice";
+import cartProductsSlice from "./cartProductsSlice";
 
 export const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
     login: loginSlice,
     user: userSlice,
     card: cardSlice,
+    cartProducts: cartProductsSlice,
   },
 });
 
