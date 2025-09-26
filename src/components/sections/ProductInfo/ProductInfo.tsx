@@ -1,7 +1,7 @@
 import { Product } from "@/types/product";
 
 import Stars from "@/components/ui/Stars/Stars";
-import { QuantitySelector } from "@/components/ui/QuantitySelector/QuantitySelector";
+import { QuantitySelectorGroup } from "@/components/ui/QuantitySelectorGroup/QuantitySelectorGroup";
 
 interface ProductInfoProps {
   product: Product | null | undefined;
@@ -68,7 +68,7 @@ export const ProductInfo = ({ product }: ProductInfoProps) => {
           })}
         </ul>
       </div>
-      <QuantitySelector product={product} />
+      <QuantitySelectorGroup product={product} />
     </div>
   );
 };
