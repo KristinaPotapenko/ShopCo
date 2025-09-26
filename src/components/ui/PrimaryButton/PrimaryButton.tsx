@@ -23,7 +23,7 @@ export default function PrimaryButton(props: PrimaryButtonProps) {
   const { className, variant = "black", children } = props;
 
   const baseStyle =
-    "flex items-center justify-center py-3 lg:py-4 px-16 font-semibold rounded-[60px] cursor-pointer transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2";
+    "flex items-center justify-center gap-3 py-3 lg:py-4 px-16 font-semibold rounded-[60px] cursor-pointer transition-all duration-200 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
   const variants = {
     black:
