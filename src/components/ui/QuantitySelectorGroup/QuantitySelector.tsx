@@ -8,10 +8,14 @@ import { Minus, Plus } from "lucide-react";
 
 interface QuantitySelectorProps {
   product: Product | null | undefined;
+  quantity?: number;
 }
 
-export const QuantitySelector = ({ product }: QuantitySelectorProps) => {
-  const [quantityProduct, setQuantityProduct] = useState<number>(1);
+export const QuantitySelector = ({
+  product,
+  quantity,
+}: QuantitySelectorProps) => {
+  const [quantityProduct, setQuantityProduct] = useState<number>(quantity || 1);
 
   const updateQuantity = (quantity: number, type: "add" | "delete") => {
     if (type === "delete" && quantity > 1) {

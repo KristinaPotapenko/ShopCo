@@ -5,30 +5,44 @@ import { API_BASE } from "@/constants/constance";
 import { Product } from "@/types/product";
 
 export const getProductsByIds = createAsyncThunk(
-  "products/getByIds",
+  "products/getProductsByIds",
   async (ids: number[]) => {
     const responses = await Promise.all(
-      ids.map((id) => fetch(`${API_BASE}/${id}`).then((r) => r.json()))
+      ids.map((id) => fetch(`${API_BASE}/products/${id}`).then((r) => r.json()))
     );
     return responses;
   }
 );
 
+interface CartProductsState {
+  products: Product[];
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
+}
+
+const initialState: CartProductsState = {
+  products: [],
+  status: "idle",
+  error: null,
+};
+
 const cartProductsSlice = createSlice({
   name: "cartProducts",
-  initialState: {
-    items: [] as Product[],
-    status: "idle" as "idle" | "loading" | "succeeded" | "failed",
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getProductsByIds.pending, (state) => {
         state.status = "loading";
+        state.error = null;
       })
-      .addCase(getProductsByIds.fulfilled, (state, action) => {
+      .addCase(getProductsByIds.fulfilled, (state, { payload }) => {
         state.status = "succeeded";
-        state.items = action.payload;
+        state.products = payload;
+      })
+      .addCase(getProductsByIds.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.payload as string;
       });
   },
 });
