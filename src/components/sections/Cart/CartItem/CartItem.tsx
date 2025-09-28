@@ -7,6 +7,7 @@ import { QuantitySelector } from "@/components/ui/QuantitySelectorGroup/Quantity
 
 import { Trash2 as Trash } from "lucide-react";
 import { Product } from "@/types/product";
+import { ProductAttribute } from "./ProductAttribute/ProductAttribute";
 
 interface CartItemProps {
   product: CartType;
@@ -42,18 +43,15 @@ export const CartItem = ({
         </div>
         {products?.length > 0 && (
           <div className="text-zinc-500">
-            <p className="font-normal">
-              <span className="text-black">Width:</span>{" "}
+            <ProductAttribute label="Width:">
               {products[index].dimensions.width}
-            </p>
-            <p className="font-normal">
-              <span className="text-black">Height:</span>{" "}
+            </ProductAttribute>
+            <ProductAttribute label="Height:">
               {products[index].dimensions.height}
-            </p>
-            <p className="font-normal">
-              <span className="text-black">Depth:</span>{" "}
+            </ProductAttribute>
+            <ProductAttribute label="Depth:">
               {products[index].dimensions.depth}
-            </p>
+            </ProductAttribute>
           </div>
         )}
         <div className="flex items-center justify-between flex-wrap gap-4">
