@@ -5,7 +5,7 @@ import { selectBestsellers } from "@/store/product/bestsellersSlice";
 import { selectNewArrivals } from "@/store/product/newArrivalsSlice";
 
 export const useProductsByType = (
-  type: "category" | "bestsellers" | "newArrivals"
+  type: "category" | "bestsellers" | "newArrivals" | "products"
 ) => {
   switch (type) {
     case "category":
@@ -14,6 +14,8 @@ export const useProductsByType = (
       return useAppSelector(selectBestsellers);
     case "newArrivals":
       return useAppSelector(selectNewArrivals);
+    case "products":
+      return useAppSelector(selectProducts);
     default:
       throw new Error(`Unknown type: ${type}`);
   }

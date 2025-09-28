@@ -12,12 +12,14 @@ interface FetchProductsResponse {
 }
 
 const fetchProductsByCategory = async (
-  category: string,
+  category: string | null,
   skip = 0,
   limit = 12
 ): Promise<FetchProductsResponse> => {
   const response = await axios.get(
-    `${API_BASE}/products/category/${category}`,
+    category
+      ? `${API_BASE}/products/category/${category}`
+      : `${API_BASE}/products`,
     {
       params: { limit, skip },
     }
@@ -36,7 +38,7 @@ export const getProductsByCategory = createAsyncThunk(
       category,
       skip,
       limit,
-    }: { category: string; skip?: number; limit?: number },
+    }: { category: string | null; skip?: number; limit?: number },
     { rejectWithValue }
   ) => {
     try {

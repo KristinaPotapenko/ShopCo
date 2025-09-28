@@ -14,7 +14,7 @@ import { useProductsByType } from "@/hooks/useProductsByType";
 import { Pagination } from "@/components/ui/Pagination/Pagination";
 
 interface ProductsProps {
-  type: "category" | "bestsellers" | "newArrivals";
+  type: "category" | "bestsellers" | "newArrivals" | "products";
   category?: string;
   isBestsellers?: boolean;
 }
@@ -35,6 +35,10 @@ export const Products = ({ type, category = "beauty" }: ProductsProps) => {
       dispatch(getBestsellers({ skip: (currentPage - 1) * 12 }));
     } else if (type === "newArrivals") {
       dispatch(getNewArrivals({ skip: (currentPage - 1) * 12 }));
+    } else if (type === "products") {
+      dispatch(
+        getProductsByCategory({ category: null, skip: (currentPage - 1) * 12 })
+      );
     }
   }, [type, category, currentPage]);
 
