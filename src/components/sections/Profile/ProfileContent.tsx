@@ -11,6 +11,7 @@ import { ProfileHeader } from "./ProfileHeader";
 import { ProfileSection } from "./ProfileSection";
 import { ProfileInfo } from "./ProfileInfo";
 import { ProfileActions } from "./ProfileActions";
+import { resetCart } from "@/store/cartSlice";
 
 export const ProfileContent = ({ user }: { user: User }) => {
   const dispatch = useAppDispatch();
@@ -78,6 +79,7 @@ export const ProfileContent = ({ user }: { user: User }) => {
           Cookies.remove("accessToken");
           dispatch(resetUserInformation());
           dispatch(resetLoginState());
+          dispatch(resetCart());
           router.push("/");
         }}
       />

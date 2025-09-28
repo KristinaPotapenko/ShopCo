@@ -5,7 +5,7 @@ interface LoaderProps {
 export const Loader = ({ smallSize }: LoaderProps) => {
   return (
     <div
-      className={`flex items-center justify-center ${
+      className={`flex items-center justify-center w-full ${
         smallSize ? "h-full" : "h-[60vh]"
       }`}
     >

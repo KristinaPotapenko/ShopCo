@@ -53,6 +53,8 @@ const userSlice = createSlice({
       state.status = "idle";
       state.error = null;
       state.user = null;
+
+      Cookies.remove("userId");
     },
   },
   extraReducers: (builder) => {

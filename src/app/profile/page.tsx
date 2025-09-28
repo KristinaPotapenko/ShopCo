@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Cookies from "js-cookie";
 
 import { useAppDispatch, useAppSelector } from "@/hooks/storeHooks";
 import { getUserInformation, selectUserInformation } from "@/store/userSlice";
@@ -12,6 +13,8 @@ import { Loader } from "@/components/ui/Loader/Loader";
 export default function ProfilePage() {
   const dispatch = useAppDispatch();
   const { user, status, error } = useAppSelector(selectUserInformation);
+
+  const userId = Cookies.get("userId");
 
   useEffect(() => {
     dispatch(getUserInformation());

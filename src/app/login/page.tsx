@@ -16,6 +16,8 @@ import Logo from "@/components/ui/Logo/Logo";
 import PrimaryButton from "@/components/ui/PrimaryButton/PrimaryButton";
 import { FormInput } from "@/components/ui/FormInput/FormInput";
 import { Loader } from "@/components/ui/Loader/Loader";
+import { resetCart } from "@/store/cartSlice";
+import { resetUserInformation } from "@/store/userSlice";
 
 export default function SignupPage() {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
@@ -123,7 +125,11 @@ export default function SignupPage() {
           priority
         />
         <div className="flex flex-col items-center lg:items-start gap-12 w-full max-w-4xl">
-          {renderContent(status, () => dispatch(resetLoginState()))}
+          {renderContent(status, () => {
+            dispatch(resetLoginState());
+            dispatch(resetUserInformation());
+            dispatch(resetCart());
+          })}
         </div>
       </div>
     </div>

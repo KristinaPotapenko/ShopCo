@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import { RootState } from "../store";
 import { API_BASE } from "@/constants/constance";
@@ -59,6 +60,8 @@ const loginSlice = createSlice({
       state.status = "idle";
       state.error = null;
       state.loginInformation = null;
+
+      Cookies.remove("userId");
     },
   },
   extraReducers: (builder) => {

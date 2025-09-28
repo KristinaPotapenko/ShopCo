@@ -37,6 +37,17 @@ export const Cart = () => {
     }
   }, [cart]);
 
+  if (!userId) {
+    return (
+      <div className="flex flex-col items-center justify-center h-[60vh] gap-8 text-center">
+        <p className="text-lg lg:text-2xl font-semibold text-black">
+          You are not logged in
+        </p>
+        <PrimaryButton href="/login">Go to Login</PrimaryButton>
+      </div>
+    );
+  }
+
   if (status === "loading" || status === "idle") {
     return <Loader />;
   }
@@ -50,17 +61,6 @@ export const Cart = () => {
         <PrimaryButton onClick={() => userId && dispatch(getCart(+userId))}>
           Try Again
         </PrimaryButton>
-      </div>
-    );
-  }
-
-  if (!userId) {
-    return (
-      <div className="flex flex-col items-center justify-center h-[60vh] gap-8 text-center">
-        <p className="text-lg lg:text-2xl font-semibold text-black">
-          You are not logged in
-        </p>
-        <PrimaryButton href="/login">Go to Login</PrimaryButton>
       </div>
     );
   }
