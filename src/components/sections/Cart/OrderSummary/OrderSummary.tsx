@@ -6,6 +6,7 @@ import Input from "@/components/ui/Input/Input";
 import PrimaryButton from "@/components/ui/PrimaryButton/PrimaryButton";
 
 import { ArrowRight, Tag } from "lucide-react";
+import { SummaryRow } from "./SummaryRow/SummaryRow";
 
 interface OrderSummaryProps {
   cart: CartItem[] | null;
@@ -36,24 +37,22 @@ export const OrderSummary = ({ cart }: OrderSummaryProps) => {
       <h2 className="mb-4 lg:mb-6 text-xl lg:text-2xl font-bold text-black">
         Order Summary
       </h2>
-      <div className="flex items-center justify-between flex-wrap gap-4 mb-4 lg:mb-5 text-xl text-semibold text-zinc-500">
-        <p>Subtotal</p>
-        <p className="font-bold text-black">${subtotal.toFixed()}</p>
-      </div>
-      <div className="flex items-center justify-between flex-wrap gap-4 mb-4 lg:mb-5 text-xl text-semibold text-zinc-500">
-        <p>Discount ({`-${discountPercentage?.toFixed()}%`})</p>
-        <p className="font-bold text-red-600">-${discountedTotal.toFixed()}</p>
-      </div>
-      <div className="flex items-center justify-between flex-wrap gap-4 mb-4 lg:mb-5 text-xl text-semibold text-zinc-500">
-        <p>Delivery Fee</p>
-        <p className="font-bold text-black">$15</p>
-      </div>
-      <div className="flex items-center justify-between flex-wrap gap-4 pt-5 mb-5 lg:mb-6 text-2xl text-bold text-black border-t border-black/10">
-        <p>Total</p>
-        <p className="font-bold">
-          ${(subtotal - discountedTotal + 15).toFixed()}
-        </p>
-      </div>
+      <SummaryRow
+        label="Subtotal"
+        value={subtotal.toFixed()}
+        valueClass="text-black"
+      />
+      <SummaryRow
+        label={`Discount -${discountPercentage?.toFixed()}%`}
+        value={`-${discountedTotal.toFixed()}`}
+        valueClass="text-red-600"
+      />
+      <SummaryRow label="Delivery Fee" value="$15" valueClass="text-black" />
+      <SummaryRow
+        label="Total"
+        value={`$${(subtotal - discountedTotal + 15).toFixed()}`}
+        wrapperClass="justify-between pt-5 mb-5 lg:mb-6 text-2xl text-bold text-black border-t border-black/10"
+      />
       <div className="flex items-center justify-center sm:justify-between flex-wrap sm:flex-nowrap gap-4 mb-5 lg:mb-6">
         <div className="relative flex-1 w-full min-w-52">
           <label htmlFor="serch" className="sr-only">
