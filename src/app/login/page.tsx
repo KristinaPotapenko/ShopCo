@@ -13,8 +13,9 @@ import {
 } from "@/store/auth/loginSlice";
 
 import Logo from "@/components/ui/Logo/Logo";
-import { FormInput } from "@/components/ui/FormInput/FormInput";
 import PrimaryButton from "@/components/ui/PrimaryButton/PrimaryButton";
+import { FormInput } from "@/components/ui/FormInput/FormInput";
+import { Loader } from "@/components/ui/Loader/Loader";
 
 export default function SignupPage() {
   const [loginData, setLoginData] = useState({ username: "", password: "" });
@@ -88,11 +89,7 @@ export default function SignupPage() {
           </>
         );
       case "loading":
-        return (
-          <div className="flex items-center justify-center w-full">
-            <div className="w-40 h-40 border-4 border-t-transparent border-zinc-300 rounded-full animate-spin"></div>
-          </div>
-        );
+        return <Loader />;
       case "succeeded":
         return (
           <div className="flex flex-col items-center justify-center gap-8 w-full">

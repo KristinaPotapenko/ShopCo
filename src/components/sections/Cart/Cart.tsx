@@ -14,6 +14,7 @@ import PrimaryButton from "@/components/ui/PrimaryButton/PrimaryButton";
 
 import { OrderSummary } from "./OrderSummary/OrderSummary";
 import { CartItem } from "./CartItem/CartItem";
+import { Loader } from "@/components/ui/Loader/Loader";
 
 export const Cart = () => {
   const dispatch = useAppDispatch();
@@ -37,11 +38,7 @@ export const Cart = () => {
   }, [cart]);
 
   if (status === "loading" || status === "idle") {
-    return (
-      <div className="flex items-center justify-center h-[60vh]">
-        <div className="w-40 h-40 border-4 border-t-transparent border-zinc-300 rounded-full animate-spin"></div>
-      </div>
-    );
+    return <Loader />;
   }
 
   if (status === "failed") {
@@ -76,9 +73,7 @@ export const Cart = () => {
       <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] items-start gap-5">
         <div className="w-full py-5 px-5 lg:px-6 border border-black/10 rounded-3xl">
           {(statusProducts === "idle" || statusProducts === "loading") && (
-            <div className="flex items-center justify-center h-[60vh]">
-              <div className="w-40 h-40 border-4 border-t-transparent border-zinc-300 rounded-full animate-spin"></div>
-            </div>
+            <Loader />
           )}
           {statusProducts === "succeeded" && (
             <ul className="flex flex-col gap-4 lg:gap-6">
