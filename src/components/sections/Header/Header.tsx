@@ -21,7 +21,7 @@ export default function Header() {
       </div>
       <div className="flex items-center justify-end gap-2 lg:w-full">
         <SearchBar />
-        <IconButton href="/card">
+        <IconButton href="/cart">
           <CardIcon className="w-6 h-6" strokeWidth={2.5} />
         </IconButton>
         <IconButton href="/profile">
