@@ -6,11 +6,20 @@ import { Product } from "@/types/product";
 
 export const getProductsByIds = createAsyncThunk(
   "products/getProductsByIds",
-  async (ids: number[]) => {
-    const responses = await Promise.all(
-      ids.map((id) => fetch(`${API_BASE}/products/${id}`).then((r) => r.json()))
-    );
-    return responses;
+  async (ids: number[], { rejectWithValue }) => {
+    try {
+      const responses = await Promise.all(
+        ids.map((id) =>
+          fetch(`${API_BASE}/products/${id}`).then((r) => r.json())
+        )
+      );
+
+      return responses;
+    } catch (error: any) {
+      return rejectWithValue(
+        error.response?.data?.message || "Unable to load cart"
+      );
+    }
   }
 );
 
